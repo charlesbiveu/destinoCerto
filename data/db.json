@@ -1,6 +1,7 @@
 {
   "users": [
     {
+      "id": "1",
       "name": "Charles Biveu Doehl",
       "gender": "M",
       "cpf": "111.111.111-11",
@@ -14,10 +15,10 @@
       "city": "Florianópolis",
       "state": "SC",
       "zipCode": "88063-535",
-      "admin": true,
-      "id": 1
+      "admin": true
     },
     {
+      "id": "2",
       "name": "Paulo Kaique Silva",
       "gender": "M",
       "cpf": "665.361.949-42",
@@ -31,10 +32,10 @@
       "city": "Florianópolis",
       "state": "SC",
       "zipCode": "88090-150",
-      "admin": false,
-      "id": 2
+      "admin": false
     },
     {
+      "id": "3",
       "name": "Stefany Rita Antônia Silveira",
       "gender": "M",
       "cpf": "742.619.119-22",
@@ -48,10 +49,10 @@
       "city": "Florianópolis",
       "state": "SC",
       "zipCode": "88037-450",
-      "admin": false,
-      "id": 3
+      "admin": false
     },
     {
+      "id": "4",
       "name": "Rebeca Clara Corte Real",
       "gender": "NI",
       "cpf": "020.227.129-35",
@@ -65,10 +66,10 @@
       "city": "Florianópolis",
       "state": "SC",
       "zipCode": "88025-255",
-      "admin": false,
-      "id": 4
+      "admin": false
     },
     {
+      "id": "5",
       "name": "Noah Gael Yuri Moura",
       "gender": "M",
       "cpf": "000.202.389-06",
@@ -82,8 +83,7 @@
       "city": "Florianópolis",
       "state": "SC",
       "zipCode": "88040-367",
-      "admin": false,
-      "id": 4
+      "admin": false
     }
   ]
 }
