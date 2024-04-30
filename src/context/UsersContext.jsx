@@ -51,8 +51,46 @@ export const UsersContextProvider = ({ children }) => {
       .catch(() => alert('Erro ao criar o usuário'));
   }
 
+  async function userLogin(email, password) {
+    try {
+      // event loop
+      const response = await fetch('http://localhost:3000/users');
+      const data = await response.json();
+      let userFound = false;
+      data.map((user) => {
+        if (user.email == email) {
+          userFound = true;
+
+          if (user.password == password) {
+            localStorage.setItem('isLogged', true);
+            localStorage.setItem('user_id', user.id);
+            localStorage.setItem('admin', user.admin);
+            window.location.href = '/';
+            return;
+          }
+          alert('Senha inválida');
+          return;
+        }
+      });
+      if (!userFound) {
+        alert('Usuário não cadastrado');
+      }
+    } catch (error) {
+      console.error('Erro ao tentar fazer login:', error);
+      alert('Erro ao tentar fazer login, verifique sua conexão.');
+    }
+  }
+
+  function userLogout() {
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('admin');
+    window.location.href = '/login';
+    return; // Redireciona o usuário para a página de login após o logout
+  }
+
   return (
-    <UsersContext.Provider value={{ users, createUser }}>
+    <UsersContext.Provider value={{ users, createUser, userLogin, userLogout }}>
       {children}
     </UsersContext.Provider>
   );

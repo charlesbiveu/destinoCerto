@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UsersContext } from '../context/UsersContext';
 
+let isAdmin = JSON.parse(localStorage.getItem('admin'));
 function ListUsers() {
   const { users, deleteUser, editUser } = useContext(UsersContext);
 
@@ -45,12 +46,9 @@ function ListUsers() {
                 <strong>Administrador:</strong> {user.admin ? 'Sim' : 'Não'}
               </p>
               <button onClick={() => editUser(user.id)}>Editar</button>
-              <button
-                onClick={() => deleteUser(user.id)}
-                style={{ marginLeft: '10px' }}
-              >
-                Deletar
-              </button>
+              {isAdmin && (
+                <button onClick={() => deleteUser(user.id)}>Deletar</button>
+              )}
             </div>
           ))}
       </div>
