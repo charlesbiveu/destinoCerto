@@ -85,5 +85,7 @@
       "zipCode": "88040-367",
       "admin": false
     }
-  ]
+  ],
+
+  "collectPlaces": []
 }
