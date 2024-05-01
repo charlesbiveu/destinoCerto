@@ -89,8 +89,39 @@ export const UsersContextProvider = ({ children }) => {
     return; // Redireciona o usuário para a página de login após o logout
   }
 
+  async function getUserById(id) {
+    const response = await fetch(`http://localhost:3000/users/${id}`);
+    if (!response.ok) {
+      throw new Error('Falha ao buscar usuário');
+    }
+    return response.json();
+  }
+
+  async function updateUser(id, userData) {
+    const response = await fetch(`http://localhost:3000/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    if (!response.ok) {
+      throw new Error('Falha ao atualizar usuário');
+    }
+    getUsers(); // Atualiza a lista de usuários após a atualização
+  }
+
   return (
-    <UsersContext.Provider value={{ users, createUser, userLogin, userLogout }}>
+    <UsersContext.Provider
+      value={{
+        users,
+        createUser,
+        userLogin,
+        userLogout,
+        getUserById,
+        updateUser,
+      }}
+    >
       {children}
     </UsersContext.Provider>
   );

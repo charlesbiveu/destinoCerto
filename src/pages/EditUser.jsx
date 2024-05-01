@@ -1,19 +1,43 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { UsersContext } from '../context/UsersContext';
 
-function CreateUsers() {
-  const { createUser } = useContext(UsersContext);
+function EditUser() {
+  const { id } = useParams();
+  const { getUserById, updateUser } = useContext(UsersContext);
+  const [loading, setLoading] = useState(true);
   const {
     register,
     handleSubmit,
     watch,
     setValue,
     formState: { errors },
+    reset,
   } = useForm();
+
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const userData = await getUserById(id);
+        reset(userData); // Inicializa o formulário com os dados do usuário
+        // Aplica os valores para os campos com máscaras após o reset
+        setTimeout(() => {
+          setValue('cpf', userData.cpf, { shouldValidate: true });
+          setValue('zipCode', userData.zipCode, { shouldValidate: true });
+        }, 50);
+        setLoading(false);
+      } catch (error) {
+        console.error('Erro ao carregar dados do usuário:', error);
+        setLoading(false);
+      }
+    }
+
+    fetchUserData();
+  }, [id, reset, setValue, getUserById]);
+
   const cep = watch('zipCode');
-  const password = watch('password');
 
   useEffect(() => {
     if (cep && cep.length === 9) {
@@ -35,29 +59,36 @@ function CreateUsers() {
     }
   }, [cep, setValue]);
 
-  const onSubmit = (data) => {
-    if (data.password !== data['confirm-password']) {
-      alert('Senhas não conferem');
-      return;
+  const onSubmit = async (data) => {
+    try {
+      await updateUser(id, data);
+      alert('Usuário atualizado com sucesso!');
+    } catch (error) {
+      alert('Erro ao atualizar usuário');
+      console.error('Erro ao atualizar usuário:', error);
     }
-    createUser(data);
   };
 
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
   return (
-    <>
-      <h3>Users</h3>
-      <div>Form de cadastro de usuários</div>
+    <div>
+      <h1>Edit User</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type='text'
           placeholder='Nome completo'
-          {...register('name', { required: 'Insira seu nome' })}
+          {...register('name', { required: 'Nome completo é obrigatório' })}
         />
+        {errors.name && <p>{errors.name.message}</p>}
         <input
           type='text'
           placeholder='E-mail'
-          {...register('email', { required: 'Email é obrigatório' })}
+          {...register('email', { required: 'E-mail é obrigatório' })}
         />
+        {errors.email && <p>{errors.email.message}</p>}
         <label>
           <input
             {...register('gender', { required: 'Gênero é obrigatório' })}
@@ -88,7 +119,10 @@ function CreateUsers() {
           maskChar={null}
           {...register('cpf', {
             required: 'CPF é obrigatório',
-            pattern: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+            pattern: {
+              value: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+              message: 'Formato de CPF inválido',
+            },
           })}
         >
           {(inputProps) => <input {...inputProps} type='text' />}
@@ -100,22 +134,7 @@ function CreateUsers() {
             required: 'Data de nascimento é obrigatória',
           })}
         />
-        <input
-          type='password'
-          placeholder='Senha'
-          {...register('password', {
-            required: 'Senha é obrigatória',
-            minLength: 8,
-          })}
-        />
-        <input
-          type='password'
-          placeholder='Confirmar senha'
-          {...register('confirm-password', {
-            required: 'Confirmação de senha é obrigatória',
-            minLength: 8,
-          })}
-        />
+        {errors.birthDate && <p>{errors.birthDate.message}</p>}
         <InputMask
           mask='99999-999'
           placeholder='CEP'
@@ -165,10 +184,10 @@ function CreateUsers() {
         <label>
           <input type='checkbox' {...register('admin')} /> Admin
         </label>
-        <button type='submit'>Cadastrar</button>
+        <button type='submit'>Salvar Alterações</button>
       </form>
-    </>
+    </div>
   );
 }
 
-export default CreateUsers;
+export default EditUser;

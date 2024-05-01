@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { UsersContext } from '../context/UsersContext';
+import { Link } from 'react-router-dom';
 
 let isAdmin = JSON.parse(localStorage.getItem('admin'));
 function ListUsers() {
-  const { users, deleteUser, editUser } = useContext(UsersContext);
+  const { users } = useContext(UsersContext);
 
   return (
     <>
@@ -45,10 +46,8 @@ function ListUsers() {
               <p>
                 <strong>Administrador:</strong> {user.admin ? 'Sim' : 'Não'}
               </p>
-              <button onClick={() => editUser(user.id)}>Editar</button>
-              {isAdmin && (
-                <button onClick={() => deleteUser(user.id)}>Deletar</button>
-              )}
+              <Link to={`/users/edit/${user.id}`}>Editar</Link>
+              {isAdmin && <Link to={`/users/delete/${user.id}`}>Deletar</Link>}
             </div>
           ))}
       </div>
