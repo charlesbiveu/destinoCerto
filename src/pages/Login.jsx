@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UsersContext } from '../context/UsersContext';
+import logo from '../assets/destinoCerto.png';
 function Login() {
   const { userLogin } = useContext(UsersContext);
   const [user, setUser] = useState({
@@ -14,6 +15,7 @@ function Login() {
 
   return (
     <>
+      <img src={logo} className='logo' alt='Destino certo' />
       <form>
         <label htmlFor='email'>Email</label>
         <input

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
-import { UsersContext } from '../context/UsersContext';
+import logo from '../assets/destinoCerto.png';
 
 function CreateUsers() {
   const { createUser } = useContext(UsersContext);
@@ -13,7 +13,11 @@ function CreateUsers() {
     getValues,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      admin: false,
+    },
+  });
   const cep = watch('zipCode');
   const password = watch('password');
 
@@ -41,12 +45,16 @@ function CreateUsers() {
       alert('Senhas não conferem');
       return;
     }
+    defaultValues: {
+      admin: false;
+    }
     createUser(data);
     reset();
   };
 
   return (
     <>
+      <img src={logo} className='logo' alt='Destino certo' />
       <h3>Novo Usuário</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='form-group'>
@@ -254,9 +262,6 @@ function CreateUsers() {
               </small>
             )}
           </div>
-          <label>
-            <input type='checkbox' {...register('admin')} /> Admin
-          </label>
         </div>
         <button type='submit'>Cadastrar</button>
       </form>

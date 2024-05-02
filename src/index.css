@@ -30,9 +30,8 @@ form {
   align-items: center;
 }
 
-label {
-  font-family: var(--font);
-  font-size: 0.875em;
+.logo {
+  height: 100px;
 }
 
 .form-group {
@@ -64,6 +63,9 @@ label {
     font-size: 1em;
   }
 
+  .logo {
+    height: 130px;
+  }
 }
 
 /* Desktops de baixa resolução */
@@ -72,6 +74,9 @@ label {
     font-size: 1.125em;
   }
 
+  .logo {
+    height: 130px;
+  }
 
 }
 
@@ -81,5 +86,8 @@ label {
     font-size: 1.25em;
   }
 
+  .logo {
+    height: 150px;
+  }
 
 }
