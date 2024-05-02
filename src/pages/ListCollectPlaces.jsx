@@ -3,6 +3,8 @@ import { CollectPlaceContext } from '../context/CollectPlaceContext';
 import { UsersContext } from '../context/UsersContext';
 import { Link } from 'react-router-dom';
 
+let loggedId = JSON.parse(localStorage.getItem('user_id'));
+let isAdmin = JSON.parse(localStorage.getItem('admin'));
 function ListCollectPlaces() {
   const { places } = useContext(CollectPlaceContext);
   const { getUserById } = useContext(UsersContext);
@@ -58,7 +60,10 @@ function ListCollectPlaces() {
               {userNames[place.user_id] || 'Carregando...'}
             </p>
             <Link to={`/collectPlaces/edit/${place.id}`}>Editar</Link>
-            <Link to={`/collectPlaces/delete/${place.id}`}>Deletar</Link>
+
+            {(isAdmin || loggedId === place.user_id) && (
+              <Link to={`/collectPlaces/delete/${place.id}`}>Deletar</Link>
+            )}
           </div>
         ))}
       </div>
