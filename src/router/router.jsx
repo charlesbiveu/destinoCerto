@@ -5,6 +5,8 @@ import ListUsers from '../pages/ListUsers';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import EditUser from '../pages/EditUser';
+import CreateCollectPlace from '../pages/CreateCollectPlace';
+import ListCollectPlaces from '../pages/ListCollectPlaces';
 
 let isLogged = JSON.parse(localStorage.getItem('isLogged')) || false;
 const PrivateRoute = ({ children }) => {
@@ -39,6 +41,14 @@ const routes = createBrowserRouter([
       {
         path: '/users/edit/:id',
         element: <EditUser />,
+      },
+      {
+        path: '/collectPlaces/create',
+        element: <CreateCollectPlace />,
+      },
+      {
+        path: '/collectPlaces/list',
+        element: <ListCollectPlaces />,
       },
     ],
   },

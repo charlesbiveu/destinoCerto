@@ -12,6 +12,7 @@ function Header() {
         Users:
         <Link to='/users/list'>Listar</Link>
         <Link to='/users/create'>Cadastrar</Link>
+        <br />
         <Link
           to='#'
           onClick={(e) => {
@@ -21,6 +22,10 @@ function Header() {
         >
           Logout
         </Link>
+        <br />
+        Locais de Coleta:
+        <Link to='/collectPlaces/create'>Cadastrar</Link>
+        <Link to='/collectPlaces/list'>Listar</Link>
       </div>
     </>
   );

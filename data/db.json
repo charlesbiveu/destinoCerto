@@ -86,6 +86,22 @@
       "admin": false
     }
   ],
-
-  "collectPlaces": []
+  "collectPlaces": [
+    {
+      "id": "8ed1",
+      "user_id": 1,
+      "collect": "Vidros",
+      "place": "Ecoponto",
+      "placeDescription": "Ponto de coleta de vidros no meio da quadra",
+      "zipCode": "88063-565",
+      "street": "Rua Radialista Dakir Polidoro",
+      "number": "s/n",
+      "complement": "",
+      "neighborhood": "Campeche",
+      "city": "Florianópolis",
+      "state": "SC",
+      "latitude": "-27.67203",
+      "longitude": "-48.48181"
+    }
+  ]
 }
