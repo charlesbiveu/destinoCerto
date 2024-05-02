@@ -84,6 +84,23 @@
       "state": "SC",
       "zipCode": "88040-367",
       "admin": false
+    },
+    {
+      "id": "438b",
+      "name": "Teste de user01",
+      "email": "teste.01@user.com.br",
+      "gender": "M",
+      "cpf": "788.102.640-53",
+      "birthDate": "2024-05-15",
+      "password": "12345678",
+      "zipCode": "95900-210",
+      "street": "Rua 17 de Dezembro",
+      "number": "30",
+      "complement": "",
+      "neighborhood": "Hidráulica",
+      "city": "Lajeado",
+      "state": "RS",
+      "admin": false
     }
   ],
   "collectPlaces": [

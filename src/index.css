@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Definição de variáveis de cores fonte de paleta site Coolors*/
+:root {
+  --navajo-white: rgba(254, 223, 179, 1);
+  --pakistan-green: rgba(40, 54, 24, 1);
+  --penn-red: rgba(152, 5, 0, 1);
+  --ivory: rgba(244, 249, 233, 1);
+  --space-cadet: rgba(34, 46, 80, 1);
+  --font: 'Raleway', sans-serif;
+}
+
+body {
+  font-size: 0.875em;
+  font-family: var(--font);
+  line-height: 1.6;
+  background-color: var(--ivory);
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-family: var(--font);
+  font-size: 0.875em;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.form-group-itens {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2px;
+
+}
+
+.error {
+  font-size: 0.6em;
+  font-weight: 700;
+  color: var(--penn-red);
+}
+
+
+
+/* Tablets */
+@media (min-width: 768px) {
+  body {
+    font-size: 1em;
+  }
+
+}
+
+/* Desktops de baixa resolução */
+@media (min-width: 992px) {
+  body {
+    font-size: 1.125em;
+  }
+
+
+}
+
+/* Desktops de alta resolução */
+@media (min-width: 1200px) {
+  body {
+    font-size: 1.25em;
+  }
+
+
+}

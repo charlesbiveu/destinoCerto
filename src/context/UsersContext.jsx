@@ -47,6 +47,8 @@ export const UsersContextProvider = ({ children }) => {
       .then(() => {
         alert('Usuário criado com sucesso');
         getUsers();
+        window.location.href = '/';
+        return;
       })
       .catch(() => alert('Erro ao criar o usuário'));
   }
