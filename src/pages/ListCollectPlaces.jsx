@@ -59,8 +59,9 @@ function ListCollectPlaces() {
               <strong>Cadastrado por:</strong>{' '}
               {userNames[place.user_id] || 'Carregando...'}
             </p>
-            <Link to={`/collectPlaces/edit/${place.id}`}>Editar</Link>
-
+            {(isAdmin || loggedId === place.user_id) && (
+              <Link to={`/collectPlaces/edit/${place.id}`}>Editar</Link>
+            )}
             {(isAdmin || loggedId === place.user_id) && (
               <Link to={`/collectPlaces/delete/${place.id}`}>Deletar</Link>
             )}
