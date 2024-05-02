@@ -118,10 +118,6 @@ function EditCollectPlace() {
           {...register('zipCode', {
             required: 'CEP é obrigatório',
             pattern: /^\d{5}-\d{3}$/,
-            onBlur: () => {
-              const cep = getValues('zipCode');
-              if (cep && cep.length === 9) fetchCEP(cep);
-            },
           })}
         >
           {(inputProps) => <input {...inputProps} type='text' />}

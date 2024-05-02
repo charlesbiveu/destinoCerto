@@ -8,6 +8,7 @@ import EditUser from '../pages/EditUser';
 import CreateCollectPlace from '../pages/CreateCollectPlace';
 import ListCollectPlaces from '../pages/ListCollectPlaces';
 import EditCollectPlace from '../pages/EditCollectPlace';
+import ListCollectPlacesByUser from '../pages/ListCollectPlacesByUser';
 
 let isLogged = JSON.parse(localStorage.getItem('isLogged')) || false;
 const PrivateRoute = ({ children }) => {
@@ -54,6 +55,10 @@ const routes = createBrowserRouter([
       {
         path: '/collectPlaces/edit/:id',
         element: <EditCollectPlace />,
+      },
+      {
+        path: '/collectPlaces/listbyuser/:user_id',
+        element: <ListCollectPlacesByUser />,
       },
     ],
   },

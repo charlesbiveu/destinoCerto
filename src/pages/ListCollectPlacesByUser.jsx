@@ -1,20 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { CollectPlaceContext } from '../context/CollectPlaceContext';
 import { UsersContext } from '../context/UsersContext';
-import { Link } from 'react-router-dom';
-
 let loggedId = JSON.parse(localStorage.getItem('user_id'));
 let isAdmin = JSON.parse(localStorage.getItem('admin'));
-function ListCollectPlaces() {
-  const { places, deletePlace } = useContext(CollectPlaceContext);
+function ListCollectPlacesByUser() {
+  const { user_id } = useParams();
+  const { getCollectPlacesByUserId, deletePlace } =
+    useContext(CollectPlaceContext);
+  const [userPlaces, setUserPlaces] = useState([]);
   const { getUserById } = useContext(UsersContext);
 
-  // esse useState vai armazenar o nome do usuário que registrou o local de coleta
+  useEffect(() => {
+    getCollectPlacesByUserId(user_id)
+      .then(setUserPlaces)
+      .catch((error) => {
+        console.error('Erro ao buscar locais de coleta:', error);
+        alert('Falha ao buscar locais de coleta.');
+      });
+  }, [user_id, getCollectPlacesByUserId]);
+
   const [userNames, setUserNames] = useState({});
 
   // Para pegar o nome do usuário que registrou
   useEffect(() => {
-    places.forEach(async (place) => {
+    userPlaces.forEach(async (place) => {
       if (place.user_id && !userNames[place.user_id]) {
         try {
           const user = await getUserById(place.user_id);
@@ -24,13 +34,13 @@ function ListCollectPlaces() {
         }
       }
     });
-  }, [places, getUserById, userNames]);
+  }, [userPlaces, getUserById, userNames]);
 
   return (
     <>
       <h3>Locais de Coleta</h3>
       <div>
-        {places.map((place) => (
+        {userPlaces.map((place) => (
           <div
             key={place.id}
             style={{
@@ -84,4 +94,4 @@ function ListCollectPlaces() {
   );
 }
 
-export default ListCollectPlaces;
+export default ListCollectPlacesByUser;

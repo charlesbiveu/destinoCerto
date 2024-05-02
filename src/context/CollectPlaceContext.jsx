@@ -25,6 +25,7 @@ export const CollectPlaceContextProvider = ({ children }) => {
     })
       .then(() => {
         alert('Local de coleta criado com seucesso!');
+        getPlaces();
       })
       .catch(() => alert('Erro ao criar o local de coleta'));
   }
@@ -51,9 +52,37 @@ export const CollectPlaceContextProvider = ({ children }) => {
     getPlaces();
   }
 
+  function deletePlace(id) {
+    fetch(`http://localhost:3000/collectPlaces/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        alert('Local de coleta deletado com sucesso!');
+        getPlaces(); // Atualiza a lista após a exclusão
+      })
+      .catch(() => alert('Erro ao deletar o local de coleta'));
+  }
+  // locais de coleta por usuário
+  async function getCollectPlacesByUserId(user_id) {
+    const response = await fetch(
+      `http://localhost:3000/collectPlaces?user_id=${user_id}`
+    );
+    if (!response.ok) {
+      throw new Error('Falha ao buscar locais de coleta');
+    }
+    return response.json();
+  }
+
   return (
     <CollectPlaceContext.Provider
-      value={{ places, createPlace, getCollectPlaceById, updatePlace }}
+      value={{
+        places,
+        createPlace,
+        getCollectPlaceById,
+        updatePlace,
+        getCollectPlacesByUserId,
+        deletePlace,
+      }}
     >
       {children}
     </CollectPlaceContext.Provider>

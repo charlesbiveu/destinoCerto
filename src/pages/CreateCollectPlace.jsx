@@ -2,10 +2,12 @@ import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { CollectPlaceContext } from '../context/CollectPlaceContext';
+import { useNavigate } from 'react-router-dom';
 
 function CreatePlaces() {
   let user_id = JSON.parse(localStorage.getItem('user_id'));
   const { createPlace } = useContext(CollectPlaceContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -48,6 +50,7 @@ function CreatePlaces() {
     }
     createPlace(data);
     reset(); // limpa o formulário após enviar
+    navigate('/collectPlaces/listbyuser/' + user_id);
   };
 
   return (
@@ -96,10 +99,6 @@ function CreatePlaces() {
           {...register('zipCode', {
             required: 'CEP é obrigatório',
             pattern: /^\d{5}-\d{3}$/,
-            onBlur: () => {
-              const cep = getValues('zipCode');
-              if (cep && cep.length === 9) fetchCEP(cep);
-            },
           })}
         >
           {(inputProps) => <input {...inputProps} type='text' />}
