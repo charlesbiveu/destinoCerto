@@ -18,10 +18,26 @@
   --font: 'Raleway', sans-serif;
 }
 
+.danger {
+  color: var(--penn-red);
+}
+
+.primary {
+  color: var(--space-cadet);
+}
+
+.success {
+  color: var(--pakistan-green);
+}
+
 body {
   font-family: var(--font);
   line-height: 1.6;
   background-color: var(--navajo-white);
+}
+
+a {
+  text-decoration: none;
 }
 
 .main {
@@ -51,10 +67,18 @@ body {
 }
 
 .page-title {
+  width: 100%;
   font-size: 1.4em;
   font-weight: 700;
   color: var(--space-cadet);
   padding-left: 30px;
+}
+
+.align-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .boxes {
@@ -135,6 +159,63 @@ body {
   width: 20%;
   font-size: 2em;
   color: var(--space-cadet-alpha)
+}
+
+.card-detail {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 20px 0;
+  background-color: var(--ivory);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--space-cadet);
+}
+
+.card-detail-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.card-detail-address {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.card-detail-address-text {
+  font-size: 0.8em;
+}
+
+.card-detail-actions {
+  font-size: 1.8em;
+}
+
+.card-detail-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.card-detail-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  justify-content: space-between;
 }
 
 
@@ -227,7 +308,7 @@ form {
 
 .dropdown-content li {
   display: block;
-  color: black;
+  color: var(--space-cadet);
 }
 
 .dropdown:hover .dropdown-content {

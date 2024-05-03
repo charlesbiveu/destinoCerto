@@ -9,6 +9,7 @@ import CreateCollectPlace from '../pages/CreateCollectPlace';
 import ListCollectPlaces from '../pages/ListCollectPlaces';
 import EditCollectPlace from '../pages/EditCollectPlace';
 import ListCollectPlacesByUser from '../pages/ListCollectPlacesByUser';
+import DetailsCollectPlace from '../pages/DetailsCollectPlace';
 
 let isLogged = JSON.parse(localStorage.getItem('isLogged')) || false;
 const PrivateRoute = ({ children }) => {
@@ -51,6 +52,10 @@ const routes = createBrowserRouter([
       {
         path: '/collectPlaces/list',
         element: <ListCollectPlaces />,
+      },
+      {
+        path: '/collectPlaces/details/:id',
+        element: <DetailsCollectPlace />,
       },
       {
         path: '/collectPlaces/edit/:id',

@@ -5,6 +5,7 @@ import { FaArrowsSpin } from 'react-icons/fa6';
 import { FaUsers } from 'react-icons/fa6';
 import { HiMapPin } from 'react-icons/hi2';
 import { FaEye } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 function Dashboard() {
   const { places, countPlaces } = useContext(CollectPlaceContext);
   const { getUserById } = useContext(UsersContext);
@@ -31,7 +32,7 @@ function Dashboard() {
         </div>
       </div>
       <div className='page-title'>
-        <HiMapPin /> Pontos Cadastrados
+        <HiMapPin /> <span>Pontos Cadastrados</span>
       </div>
       {places.map((place) => (
         <div className='cards' key={place.id}>
@@ -46,13 +47,15 @@ function Dashboard() {
               </div>
             </div>
             <div className='card-link-places-details'>
-              <FaEye />
+              <Link to={`/collectPlaces/details/${place.id}`}>
+                <FaEye />
+              </Link>
             </div>
           </div>
         </div>
       ))}
       <div className='page-title'>
-        <FaUsers /> Mó Quiridus
+        <FaUsers /> <span>Mó Quiridus</span>
       </div>
     </>
   );
