@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useParams, Link } from 'react-router-dom';
 import { CollectPlaceContext } from '../context/CollectPlaceContext';
 import { UsersContext } from '../context/UsersContext';
@@ -38,6 +39,7 @@ function DetailsCollectPlace() {
   if (!place) {
     return <div>Carregando...</div>; // Mensagem de carregamento enquanto não tem dados
   }
+  const position = [place.latitude, place.longitude];
   return (
     <>
       <div className='page-title align-icon'>
@@ -55,7 +57,24 @@ function DetailsCollectPlace() {
           </div>
         </div>
         <div className='card-detail-body'>
-          <div className='card-detail-map'>MAPA</div>
+          <div className='card-detail-map'>
+            <MapContainer
+              center={position}
+              zoom={13}
+              style={{ height: '400px', width: '100%' }}
+            >
+              <TileLayer
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={position}>
+                <Popup>
+                  {place.place} <br /> {place.placeDescription}
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
+
           <div className='card-detail-description'>
             <div className='card-detail-subtitle align-icon'>
               <MdTextsms /> <span>ÓI-ÓI-Ó!</span>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 /* Reset padrão para todos os elementos */
 * {
   box-sizing: border-box;
@@ -175,6 +176,7 @@ a {
   margin-left: auto;
   margin-right: auto;
   color: var(--space-cadet);
+  margin-bottom: 30px;
 }
 
 .card-detail-body {
@@ -200,6 +202,12 @@ a {
   font-size: 1.8em;
 }
 
+.card-detail-map {
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
 .card-detail-header {
   display: flex;
   flex-direction: row;
@@ -214,7 +222,6 @@ a {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding: 10px;
   justify-content: space-between;
 }
 
