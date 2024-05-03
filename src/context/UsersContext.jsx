@@ -15,6 +15,11 @@ export const UsersContextProvider = ({ children }) => {
       .catch((error) => console.log(error));
   }
 
+  //para contar o numero de usuários
+  const countUsers = () => {
+    return users.length;
+  };
+
   function createUser(user) {
     if (!user.name || user.name.trim() === '') {
       alert('Preencha o nome completo');
@@ -122,6 +127,7 @@ export const UsersContextProvider = ({ children }) => {
         userLogout,
         getUserById,
         updateUser,
+        countUsers,
       }}
     >
       {children}

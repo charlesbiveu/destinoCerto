@@ -2,7 +2,11 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UsersContext } from '../../context/UsersContext';
 import logo from '../../assets/destinoCerto.png';
+import { FaArrowsSpin } from 'react-icons/fa6';
+import { FaUserGear } from 'react-icons/fa6';
+import { FaGears } from 'react-icons/fa6';
 
+let isAdmin = JSON.parse(localStorage.getItem('admin'));
 function Header() {
   const { userLogout } = useContext(UsersContext);
 
@@ -18,18 +22,10 @@ function Header() {
           <nav>
             <ul className='nav-links'>
               <li className='dropdown'>
-                Usuários
-                <ul className='dropdown-content'>
-                  <li>
-                    <Link to='/users/list'>Listar</Link>
-                  </li>
-                  <li>
-                    <Link to='/users/create'>Cadastrar</Link>
-                  </li>
-                </ul>
-              </li>
-              <li className='dropdown'>
-                Locais de Coleta
+                <div className='dropdown-toggle'>
+                  <FaArrowsSpin />
+                  <span>Coletas</span>
+                </div>
                 <ul className='dropdown-content'>
                   <li>
                     <Link to='/collectPlaces/create'>Cadastrar</Link>
@@ -39,8 +35,28 @@ function Header() {
                   </li>
                 </ul>
               </li>
+              {isAdmin && (
+                <li className='dropdown'>
+                  <div className='dropdown-toggle'>
+                    <FaGears />
+                    <span>Admin</span>
+                  </div>
+                  <ul className='dropdown-content'>
+                    <li>
+                      <Link to='/users/list'>Listar</Link>
+                    </li>
+                    <li>
+                      <Link to='/users/create'>Cadastrar</Link>
+                    </li>
+                  </ul>
+                </li>
+              )}
+
               <li className='dropdown'>
-                Perfil
+                <div className='dropdown-toggle'>
+                  <FaUserGear />
+                  <span>Perfil</span>
+                </div>
                 <ul className='dropdown-content'>
                   <li>
                     <Link to='/profile'>Meu Perfil</Link>

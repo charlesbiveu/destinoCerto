@@ -15,6 +15,11 @@ export const CollectPlaceContextProvider = ({ children }) => {
       .catch((error) => console.log(error));
   }
 
+  //para contar o numero de pontos de coleta
+  const countPlaces = () => {
+    return places.length;
+  };
+
   function createPlace(place) {
     fetch('http://localhost:3000/collectPlaces', {
       method: 'POST',
@@ -82,6 +87,7 @@ export const CollectPlaceContextProvider = ({ children }) => {
         updatePlace,
         getCollectPlacesByUserId,
         deletePlace,
+        countPlaces,
       }}
     >
       {children}
