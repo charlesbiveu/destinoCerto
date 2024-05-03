@@ -101,6 +101,24 @@
       "city": "Lajeado",
       "state": "RS",
       "admin": false
+    },
+    {
+      "id": "6919",
+      "admin": false,
+      "name": "Teste 05",
+      "gender": "M",
+      "cpf": "222.222.222-22",
+      "birthDate": "2024-05-02",
+      "zipCode": "88063-201",
+      "street": "Rua Auroreal",
+      "number": "42",
+      "complement": "",
+      "neighborhood": "Campeche",
+      "city": "Florianópolis",
+      "state": "SC",
+      "email": "teste03@teste.com.br",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ],
   "collectPlaces": [

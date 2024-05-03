@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
+import { UsersContext } from '../context/UsersContext';
 import logo from '../assets/destinoCerto.png';
 
 function CreateUsers() {
