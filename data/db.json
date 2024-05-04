@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Charles Biveu Doehl",
       "gender": "M",
       "cpf": "111.111.111-11",
@@ -18,7 +18,7 @@
       "admin": true
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Paulo Kaique Silva",
       "gender": "M",
       "cpf": "665.361.949-42",
@@ -35,9 +35,9 @@
       "admin": false
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Stefany Rita Antônia Silveira",
-      "gender": "M",
+      "gender": "F",
       "cpf": "742.619.119-22",
       "birthDate": "2003-01-04",
       "email": "stefany_rita_silveira@bol.com",
@@ -52,7 +52,7 @@
       "admin": false
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Rebeca Clara Corte Real",
       "gender": "NI",
       "cpf": "020.227.129-35",
@@ -69,7 +69,7 @@
       "admin": false
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Noah Gael Yuri Moura",
       "gender": "M",
       "cpf": "000.202.389-06",
@@ -86,62 +86,78 @@
       "admin": false
     },
     {
-      "id": "438b",
+      "id": 6,
       "name": "Teste de user01",
-      "email": "teste.01@user.com.br",
       "gender": "M",
       "cpf": "788.102.640-53",
       "birthDate": "2024-05-15",
+      "email": "teste.01@user.com.br",
       "password": "12345678",
-      "zipCode": "95900-210",
       "street": "Rua 17 de Dezembro",
       "number": "30",
       "complement": "",
       "neighborhood": "Hidráulica",
       "city": "Lajeado",
       "state": "RS",
+      "zipCode": "95900-210",
       "admin": false
     },
     {
-      "id": "6919",
-      "admin": false,
+      "id": 7,
       "name": "Teste 05",
       "gender": "M",
       "cpf": "222.222.222-22",
       "birthDate": "2024-05-02",
-      "zipCode": "88063-201",
+      "email": "teste03@teste.com.br",
+      "password": "123456",
       "street": "Rua Auroreal",
       "number": "42",
       "complement": "",
       "neighborhood": "Campeche",
       "city": "Florianópolis",
       "state": "SC",
-      "email": "teste03@teste.com.br",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "zipCode": "88063-201",
+      "admin": false
     },
     {
-      "id": "a4cf",
-      "admin": false,
+      "id": 8,
       "name": "Teste 35",
-      "gender": " F ",
+      "gender": "F",
       "cpf": "087.608.516-86",
       "birthDate": "1975-04-15",
-      "zipCode": "95900-174",
+      "email": "teste35@teste.com.br",
+      "password": "123456",
       "street": "Rua Bento Gonçalves",
       "number": "401",
       "complement": "",
       "neighborhood": "Centro",
       "city": "Lajeado",
       "state": "RS",
-      "email": "teste35@teste.com.br",
+      "zipCode": "95900-174",
+      "admin": false
+    },
+    {
+      "admin": false,
+      "name": "Carla Rosângela Aragão",
+      "gender": "F",
+      "cpf": "337.416.365-33",
+      "birthDate": "1956-05-04",
+      "zipCode": "29161-827",
+      "street": "Rua Berilo",
+      "number": "234",
+      "complement": "",
+      "neighborhood": "André Carloni",
+      "city": "Serra",
+      "state": "ES",
+      "email": "carla@teste.com.br",
       "password": "123456",
-      "confirmPassword": "123456"
+      "confirmPassword": "123456",
+      "id": 9
     }
   ],
   "collectPlaces": [
     {
-      "id": "8ed1",
+      "id": 1,
       "user_id": 1,
       "collect": "Vidros",
       "place": "Ecoponto Dakir Polidoro",
@@ -157,11 +173,11 @@
       "longitude": "-48.48181"
     },
     {
-      "id": "bebb",
+      "id": 2,
       "user_id": 5,
       "collect": "Eletrônicos",
-      "place": "ponto de coleta 3",
-      "placeDescription": "teste de local",
+      "place": "Ponto de coleta 3",
+      "placeDescription": "Teste de local",
       "zipCode": "88063-535",
       "street": "Servidão Alexandrino Pedro Daniel",
       "number": "239B",
@@ -169,14 +185,14 @@
       "neighborhood": "Campeche",
       "city": "Florianópolis",
       "state": "SC",
-      "latitude": "10000",
-      "longitude": "20000"
+      "latitude": "-27.67203",
+      "longitude": "-48.48181"
     },
     {
-      "id": "5bb0",
+      "id": 3,
       "user_id": 5,
       "collect": "Eletrônicos",
-      "place": "teste de ponto 6",
+      "place": "Teste de ponto 6",
       "placeDescription": "asdfahafadfasdf",
       "zipCode": "95900-174",
       "street": "Rua Bento Gonçalves",
@@ -185,14 +201,14 @@
       "neighborhood": "Centro",
       "city": "Lajeado",
       "state": "RS",
-      "latitude": "-27.57699",
-      "longitude": "-48.51397"
+      "latitude": "-29.44639",
+      "longitude": "-51.96137"
     },
     {
-      "id": "7ba8",
+      "id": 4,
       "user_id": 5,
       "collect": "Plástico",
-      "place": "teste 1500",
+      "place": "Teste 1500",
       "placeDescription": "asdfgasdfafg",
       "zipCode": "88063-545",
       "street": "Servidão Natureza",
@@ -201,14 +217,14 @@
       "neighborhood": "Campeche",
       "city": "Florianópolis",
       "state": "SC",
-      "latitude": "-27.57699",
-      "longitude": "-48.51397"
+      "latitude": "-27.67658",
+      "longitude": "-48.49777"
     },
     {
-      "id": "17c4",
+      "id": 5,
       "user_id": 5,
       "collect": "Perfurocortantes",
-      "place": "teste sei la",
+      "place": "Teste sei la",
       "placeDescription": "adfadfafd",
       "zipCode": "88063-555",
       "street": "Servidão Ilha Paraíso",
@@ -217,14 +233,14 @@
       "neighborhood": "Campeche",
       "city": "Florianópolis",
       "state": "SC",
-      "latitude": "-27.57699",
-      "longitude": "-48.51397"
+      "latitude": "-27.67658",
+      "longitude": "-48.49777"
     },
     {
-      "id": "ed9f",
+      "id": 6,
       "user_id": 5,
       "collect": "Perfurocortantes",
-      "place": "bla bla bal",
+      "place": "Bla bla bal",
       "placeDescription": "adfadfa",
       "zipCode": "88063-500",
       "street": "Servidão Vila Harmonia",
@@ -233,8 +249,8 @@
       "neighborhood": "Campeche",
       "city": "Florianópolis",
       "state": "SC",
-      "latitude": "-27.57699",
-      "longitude": "-48.51397"
+      "latitude": "-27.67658",
+      "longitude": "-48.49777"
     }
   ]
 }

@@ -110,16 +110,16 @@ export const UsersContextProvider = ({ children }) => {
             window.location.href = '/';
             return;
           }
-          alert('Senha inválida');
+          alert('Tás Tolo! Tás? A senha é outra!');
           return;
         }
       });
       if (!userFound) {
-        alert('Usuário não cadastrado');
+        alert('Esse Quiridu não está cadastrado!');
       }
     } catch (error) {
       console.error('Erro ao tentar fazer login:', error);
-      alert('Erro ao tentar fazer login, verifique sua conexão.');
+      alert('Sua internet mofou cas pombas na balaia');
     }
   }
 

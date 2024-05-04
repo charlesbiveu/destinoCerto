@@ -17,7 +17,7 @@ function Login() {
 
   return (
     <div className='login-main'>
-      <div className='container-main'>
+      <div className='container-login'>
         <div className='header-container'>
           <div className='logo-container'>
             <img src={logo} className='logo' alt='Destino certo' />
@@ -48,7 +48,14 @@ function Login() {
                 }
                 id='password'
               />
-              <button type='submit' onClick={() => makeLogin()}>
+              <button
+                className='button-login'
+                type='button'
+                onClick={(e) => {
+                  e.preventDefault();
+                  makeLogin();
+                }}
+              >
                 Entrar
               </button>
             </form>

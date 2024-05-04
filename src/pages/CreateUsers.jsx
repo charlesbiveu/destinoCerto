@@ -97,7 +97,7 @@ function CreateUsers() {
                 <input
                   {...register('gender', { required: 'Gênero é obrigatório' })}
                   type='radio'
-                  value=' F '
+                  value='F'
                 />{' '}
                 F{' '}
               </label>
