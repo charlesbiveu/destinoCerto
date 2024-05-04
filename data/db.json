@@ -119,6 +119,24 @@
       "email": "teste03@teste.com.br",
       "password": "123456",
       "confirmPassword": "123456"
+    },
+    {
+      "id": "a4cf",
+      "admin": false,
+      "name": "Teste 35",
+      "gender": " F ",
+      "cpf": "087.608.516-86",
+      "birthDate": "1975-04-15",
+      "zipCode": "95900-174",
+      "street": "Rua Bento Gonçalves",
+      "number": "401",
+      "complement": "",
+      "neighborhood": "Centro",
+      "city": "Lajeado",
+      "state": "RS",
+      "email": "teste35@teste.com.br",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ],
   "collectPlaces": [

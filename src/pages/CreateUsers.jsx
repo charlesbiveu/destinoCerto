@@ -3,6 +3,12 @@ import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { UsersContext } from '../context/UsersContext';
 import logo from '../assets/destinoCerto.png';
+import Footer from '../components/Footer';
+import { FaUserPlus } from 'react-icons/fa';
+import { RiCakeFill } from 'react-icons/ri';
+import { BsFillHouseFill } from 'react-icons/bs';
+import { FaLock } from 'react-icons/fa6';
+import { MdAlternateEmail } from 'react-icons/md';
 
 function CreateUsers() {
   const { createUser } = useContext(UsersContext);
@@ -50,223 +56,243 @@ function CreateUsers() {
       admin: false;
     }
     createUser(data);
-    reset();
   };
 
   return (
-    <>
-      <img src={logo} className='logo' alt='Destino certo' />
-      <h3>Novo Usuário</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='form-group'>
-          <div>
-            <strong>Informações pessoais</strong>
+    <div className='main'>
+      <div className='container'>
+        <div className='header-container'>
+          <div className='logo-container'>
+            <img src={logo} className='logo' alt='Destino certo' />
           </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Nome completo'
-              {...register('name', { required: 'Insira seu nome' })}
-            />
-            {errors.name && (
-              <small className='error'>{errors.name.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <label>
+        </div>
+        <div className='page-title'>
+          <FaUserPlus /> <span>Se cadatra Mó Quiridu!</span>
+        </div>
+        <div className='container-form'>
+          <div className='card-form'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='align-icon'>
+                <FaUserPlus /> <span>Informações pessoais</span>
+              </div>
               <input
-                {...register('gender', { required: 'Gênero é obrigatório' })}
-                type='radio'
-                value='M'
-              />{' '}
-              M
-            </label>
-            <label>
-              <input
-                {...register('gender', { required: 'Gênero é obrigatório' })}
-                type='radio'
-                value='F'
-              />{' '}
-              F
-            </label>
-            <label>
-              <input
-                {...register('gender', { required: 'Gênero é obrigatório' })}
-                type='radio'
-                value='NI'
-              />{' '}
-              Não informado
-            </label>
-            {errors.gender && (
-              <small className='error'>{errors.gender.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <InputMask
-              mask='999.999.999-99'
-              placeholder='CPF'
-              maskChar={null}
-              {...register('cpf', {
-                required: 'CPF é obrigatório',
-                pattern: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
-              })}
-            >
-              {(inputProps) => <input {...inputProps} type='text' />}
-            </InputMask>
-            {errors.cpf && (
-              <small className='error'>{errors.cpf.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <div>
+                type='text'
+                className={errors.name ? 'input-error' : ''}
+                placeholder='Nome completo'
+                {...register('name', { required: 'Insira seu nome' })}
+              />
+              {errors.name && (
+                <small className='error-message'>{errors.name.message}</small>
+              )}
+              {/* Radio buttons para gênero */}
+              <label className={errors.gender ? 'input-error' : ''}>
+                <input
+                  {...register('gender', { required: 'Gênero é obrigatório' })}
+                  type='radio'
+                  value='M'
+                />{' '}
+                M{' '}
+              </label>
+              <label className={errors.gender ? 'input-error' : ''}>
+                <input
+                  {...register('gender', { required: 'Gênero é obrigatório' })}
+                  type='radio'
+                  value=' F '
+                />{' '}
+                F{' '}
+              </label>
+              <label className={errors.gender ? 'input-error' : ''}>
+                <input
+                  {...register('gender', { required: 'Gênero é obrigatório' })}
+                  type='radio'
+                  value='NI'
+                />{' '}
+                Não informado{' '}
+              </label>
+              {errors.gender && (
+                <small className='error-message'>{errors.gender.message}</small>
+              )}
+
+              <InputMask
+                mask='999.999.999-99'
+                placeholder='CPF'
+                maskChar={null}
+                {...register('cpf', {
+                  required: 'CPF é obrigatório',
+                  pattern: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+                })}
+              >
+                {(inputProps) => (
+                  <input
+                    {...inputProps}
+                    type='text'
+                    className={errors.cpf ? 'input-error' : ''}
+                  />
+                )}
+              </InputMask>
+              {errors.cpf && (
+                <small className='error-message'>{errors.cpf.message}</small>
+              )}
+              <div className='align-icon'>
+                <RiCakeFill />{' '}
+                <span>Seu níver é antes da safra da tainha?</span>
+              </div>
               <input
                 type='date'
+                className={errors.birthDate ? 'input-error' : ''}
                 {...register('birthDate', {
                   required: 'Data de nascimento é obrigatória',
                 })}
               />
-            </div>
-            {errors.birthDate && (
-              <small className='error'>{errors.birthDate.message}</small>
-            )}
-          </div>
-          <div>
-            <strong>Endereço</strong>
-          </div>
-          <div className='form-group-itens'>
-            <InputMask
-              mask='99999-999'
-              placeholder='CEP'
-              maskChar={null}
-              {...register('zipCode', {
-                required: 'CEP é obrigatório',
-                pattern: /^\d{5}-\d{3}$/,
-              })}
-            >
-              {(inputProps) => <input {...inputProps} type='text' />}
-            </InputMask>
-            {errors.zipCode && (
-              <small className='error'>{errors.zipCode.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Rua'
-              {...register('street', { required: 'Rua é obrigatória' })}
-            />
-            {errors.street && (
-              <small className='error'>{errors.street.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Número'
-              {...register('number', { required: 'Número é obrigatório' })}
-            />
-            {errors.number && (
-              <small className='error'>{errors.number.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Complemento'
-              {...register('complement')}
-            />
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Bairro'
-              {...register('neighborhood', {
-                required: 'Bairro é obrigatório',
-              })}
-            />
-            {errors.neighborhood && (
-              <small className='error'>{errors.neighborhood.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Cidade'
-              {...register('city', { required: 'Cidade é obrigatória' })}
-            />
-            {errors.city && (
-              <small className='error'>{errors.city.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='text'
-              placeholder='Estado'
-              {...register('state', { required: 'Estado é obrigatório' })}
-            />
-            {errors.state && (
-              <small className='error'>{errors.state.message}</small>
-            )}
-          </div>
-          <div>
-            <strong>Informações de acesso</strong>
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='email'
-              placeholder='E-mail'
-              {...register('email', { required: 'E-mail é obrigatório' })}
-            />
-            {errors.email && (
-              <small className='error'>{errors.email.message}</small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='password'
-              placeholder='Senha'
-              {...register('password', {
-                required: 'Senha é obrigatória',
-                minLength: 6,
-                message: 'A senha deve ter pelo menos 6 caracteres',
-              })}
-            />
-            {errors.confirmPassword && (
-              <small className='error'>
-                {errors.password.message ||
-                  (errors.password.type === 'required'
-                    ? 'Senha é obrigatória'
-                    : errors.password.type === 'minLength'
-                    ? 'A senha deve ter pelo menos 6 caracteres'
-                    : '')}
-              </small>
-            )}
-          </div>
-          <div className='form-group-itens'>
-            <input
-              type='password'
-              placeholder='Confirmar senha'
-              {...register('confirmPassword', {
-                required: 'Confirmação de senha é obrigatória',
-                minLength: 6,
-                message: 'A senha deve ter pelo menos 6 caracteres',
-              })}
-            />
-            {errors.confirmPassword && (
-              <small className='error'>
-                {errors.confirmPassword.message ||
-                  (errors.confirmPassword.type === 'required'
-                    ? 'Confirmação de senha é obrigatória'
-                    : errors.confirmPassword.type === 'minLength'
-                    ? 'A senha deve ter pelo menos 6 caracteres'
-                    : '')}
-              </small>
-            )}
+              {errors.birthDate && (
+                <small className='error-message'>
+                  {errors.birthDate.message}
+                </small>
+              )}
+
+              <div className='align-icon'>
+                <BsFillHouseFill /> <span>Onde fica seu rancho?</span>
+              </div>
+              <InputMask
+                mask='99999-999'
+                placeholder='CEP'
+                maskChar={null}
+                {...register('zipCode', {
+                  required: 'CEP é obrigatório',
+                  pattern: /^\d{5}-\d{3}$/,
+                })}
+              >
+                {(inputProps) => (
+                  <input
+                    {...inputProps}
+                    type='text'
+                    className={errors.zipCode ? 'input-error' : ''}
+                  />
+                )}
+              </InputMask>
+              {errors.zipCode && (
+                <small className='error-message'>
+                  {errors.zipCode.message}
+                </small>
+              )}
+
+              <input
+                type='text'
+                className={errors.street ? 'input-error' : ''}
+                placeholder='Rua'
+                {...register('street', { required: 'Rua é obrigatória' })}
+              />
+              {errors.street && (
+                <small className='error-message'>{errors.street.message}</small>
+              )}
+
+              <input
+                type='text'
+                className={errors.number ? 'input-error' : ''}
+                placeholder='Número'
+                {...register('number', {
+                  required: 'Número é obrigatório',
+                })}
+              />
+              {errors.number && (
+                <small className='error-message'>{errors.number.message}</small>
+              )}
+
+              <input
+                type='text'
+                placeholder='Complemento'
+                {...register('complement')}
+              />
+
+              <input
+                type='text'
+                className={errors.neighborhood ? 'input-error' : ''}
+                placeholder='Bairro'
+                {...register('neighborhood', {
+                  required: 'Bairro é obrigatório',
+                })}
+              />
+              {errors.neighborhood && (
+                <small className='error-message'>
+                  {errors.neighborhood.message}
+                </small>
+              )}
+
+              <input
+                type='text'
+                className={errors.city ? 'input-error' : ''}
+                placeholder='Cidade'
+                {...register('city', { required: 'Cidade é obrigatória' })}
+              />
+              {errors.city && (
+                <small className='error-message'>{errors.city.message}</small>
+              )}
+
+              <input
+                type='text'
+                className={errors.state ? 'input-error' : ''}
+                placeholder='Estado'
+                {...register('state', { required: 'Estado é obrigatório' })}
+              />
+              {errors.state && (
+                <small className='error-message'>{errors.state.message}</small>
+              )}
+
+              <div className='align-icon'>
+                <MdAlternateEmail />{' '}
+                <span>Dázumbanho! E usa teu melhor e-mail.</span>
+              </div>
+              <input
+                type='email'
+                className={errors.email ? 'input-error' : ''}
+                placeholder='E-mail'
+                {...register('email', { required: 'E-mail é obrigatório' })}
+              />
+              {errors.email && (
+                <small className='error-message'>{errors.email.message}</small>
+              )}
+              <div className='align-icon'>
+                <FaLock /> <span>Não seja ixtepô, capricha na senha!</span>
+              </div>
+              <input
+                type='password'
+                className={errors.password ? 'input-error' : ''}
+                placeholder='Senha'
+                {...register('password', {
+                  required: 'Senha é obrigatória',
+                  minLength: 6,
+                  message: 'A senha deve ter pelo menos 6 caracteres',
+                })}
+              />
+              {errors.password && (
+                <small className='error-message'>
+                  {errors.password.message}
+                </small>
+              )}
+
+              <input
+                type='password'
+                className={errors.confirmPassword ? 'input-error' : ''}
+                placeholder='Confirmar senha'
+                {...register('confirmPassword', {
+                  required: 'Confirmação de senha é obrigatória',
+                  minLength: 6,
+                  message: 'A senha deve ter pelo menos 6 caracteres',
+                })}
+              />
+              {errors.confirmPassword && (
+                <small className='error-message'>
+                  {errors.confirmPassword.message}
+                </small>
+              )}
+
+              <button type='submit'>Cadastrar</button>
+            </form>
           </div>
         </div>
-        <button type='submit'>Cadastrar</button>
-      </form>
-    </>
+      </div>
+      <Footer />
+    </div>
   );
 }
 

@@ -56,7 +56,6 @@ function CreatePlaces() {
 
   return (
     <>
-      {' '}
       <div className='page-title'>
         <RiMapPinAddFill /> <span>Cadastrar ponto de coleta</span>
       </div>
