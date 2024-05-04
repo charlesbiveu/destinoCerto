@@ -370,6 +370,7 @@ button[type='submit']:hover {
 
 .nav-container {
   width: 100%;
+  color: var(--space-cadet);
   /* Garante que o contêiner do menu ocupe a largura total */
 }
 
@@ -406,7 +407,7 @@ button[type='submit']:hover {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
+  background-color: var(--ivory);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
   width: 100%;

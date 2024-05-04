@@ -7,6 +7,7 @@ import { FaUserGear } from 'react-icons/fa6';
 import { FaGears } from 'react-icons/fa6';
 
 let isAdmin = JSON.parse(localStorage.getItem('admin'));
+let user_id = JSON.parse(localStorage.getItem('user_id'));
 function Header() {
   const { userLogout } = useContext(UsersContext);
 
@@ -59,10 +60,12 @@ function Header() {
                 </div>
                 <ul className='dropdown-content'>
                   <li>
-                    <Link to='/profile'>Meu Perfil</Link>
+                    <Link to={`/users/edit/${user_id}`}>Editar Perfil</Link>
                   </li>
                   <li>
-                    <Link to='/my-places'>Meus Locais</Link>
+                    <Link to={`/collectPlaces/listbyuser/${user_id}`}>
+                      Meus Locais
+                    </Link>
                   </li>
                   <li>
                     <Link

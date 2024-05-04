@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { UsersContext } from '../context/UsersContext';
+import { FaUserEdit } from 'react-icons/fa';
 
 function EditUser() {
   const { id } = useParams();
@@ -21,8 +22,7 @@ function EditUser() {
     async function fetchUserData() {
       try {
         const userData = await getUserById(id);
-        reset(userData); // Inicializa o formulário com os dados do usuário
-        // Aplica os valores para os campos com máscaras após o reset
+        reset(userData);
         setTimeout(() => {
           setValue('cpf', userData.cpf, { shouldValidate: true });
           setValue('zipCode', userData.zipCode, { shouldValidate: true });
@@ -36,12 +36,9 @@ function EditUser() {
 
     fetchUserData();
   }, [id, reset, setValue, getUserById]);
-
   const cep = watch('zipCode');
-
   useEffect(() => {
     if (cep && cep.length === 9) {
-      // CEP completo com máscara
       fetch(`https://viacep.com.br/ws/${cep.replace('-', '')}/json/`)
         .then((response) => response.json())
         .then((data) => {
@@ -62,9 +59,11 @@ function EditUser() {
   const onSubmit = async (data) => {
     try {
       await updateUser(id, data);
-      alert('Usuário atualizado com sucesso!');
+      alert('Agora sim Mó Quiridu, sua conta foi atualizada com sucesso!');
     } catch (error) {
-      alert('Erro ao atualizar usuário');
+      alert(
+        ' Oxi o Boca Moli do programador fez algo errado, tente novamente!'
+      );
       console.error('Erro ao atualizar usuário:', error);
     }
   };
@@ -75,117 +74,187 @@ function EditUser() {
 
   return (
     <div>
-      <h1>Edit User</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type='text'
-          placeholder='Nome completo'
-          {...register('name', { required: 'Nome completo é obrigatório' })}
-        />
-        {errors.name && <p>{errors.name.message}</p>}
-        <input
-          type='text'
-          placeholder='E-mail'
-          {...register('email', { required: 'E-mail é obrigatório' })}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-        <label>
-          <input
-            {...register('gender', { required: 'Gênero é obrigatório' })}
-            type='radio'
-            value='M'
-          />{' '}
-          Masculino
-        </label>
-        <label>
-          <input
-            {...register('gender', { required: 'Gênero é obrigatório' })}
-            type='radio'
-            value='F'
-          />{' '}
-          Feminino
-        </label>
-        <label>
-          <input
-            {...register('gender', { required: 'Gênero é obrigatório' })}
-            type='radio'
-            value='NI'
-          />{' '}
-          Não Informado
-        </label>
-        <InputMask
-          mask='999.999.999-99'
-          placeholder='CPF'
-          maskChar={null}
-          {...register('cpf', {
-            required: 'CPF é obrigatório',
-            pattern: {
-              value: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
-              message: 'Formato de CPF inválido',
-            },
-          })}
-        >
-          {(inputProps) => <input {...inputProps} type='text' />}
-        </InputMask>
-        {errors.cpf && <p>{errors.cpf.message}</p>}
-        <input
-          type='date'
-          {...register('birthDate', {
-            required: 'Data de nascimento é obrigatória',
-          })}
-        />
-        {errors.birthDate && <p>{errors.birthDate.message}</p>}
-        <InputMask
-          mask='99999-999'
-          placeholder='CEP'
-          maskChar={null}
-          {...register('zipCode', {
-            required: 'CEP é obrigatório',
-            pattern: /^\d{5}-\d{3}$/,
-            onBlur: (event) => {
-              const cep = getValues('zipCode');
-              if (cep && cep.length === 9) fetchCEP(cep);
-            },
-          })}
-        >
-          {(inputProps) => <input {...inputProps} type='text' />}
-        </InputMask>
-        {errors.zipCode && <p>{errors.zipCode.message}</p>}
-        <input
-          type='text'
-          placeholder='Rua'
-          {...register('street', { required: 'Rua é obrigatória' })}
-        />
-        <input
-          type='text'
-          placeholder='Número'
-          {...register('number', { required: 'Número é obrigatório' })}
-        />
-        <input
-          type='text'
-          placeholder='Complemento'
-          {...register('complement')}
-        />
-        <input
-          type='text'
-          placeholder='Bairro'
-          {...register('neighborhood', { required: 'Bairro é obrigatório' })}
-        />
-        <input
-          type='text'
-          placeholder='Cidade'
-          {...register('city', { required: 'Cidade é obrigatória' })}
-        />
-        <input
-          type='text'
-          placeholder='Estado'
-          {...register('state', { required: 'Estado é obrigatório' })}
-        />
-        <label>
-          <input type='checkbox' {...register('admin')} /> Admin
-        </label>
-        <button type='submit'>Salvar Alterações</button>
-      </form>
+      <div className='page-title'>
+        <FaUserEdit /> <span>Atualizar seus dados</span>
+      </div>
+      <div className='container-form'>
+        <div className='card-form'>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type='text'
+              className={errors.name ? 'input-error' : ''}
+              placeholder='Nome'
+              {...register('name', { required: 'Nome completo é obrigatório' })}
+            />
+            {errors.name && (
+              <small className='error-message'>{errors.name.message}</small>
+            )}
+
+            <input
+              type='text'
+              className={errors.email ? 'input-error' : ''}
+              placeholder='E-mail'
+              {...register('email', { required: 'E-mail é obrigatório' })}
+            />
+            {errors.email && (
+              <small className='error-message'>{errors.email.message}</small>
+            )}
+
+            <label className={errors.gender ? 'input-error' : ''}>
+              <input
+                {...register('gender', { required: 'Gênero é obrigatório' })}
+                type='radio'
+                value='M'
+              />{' '}
+              M{' '}
+            </label>
+
+            <label className={errors.gender ? 'input-error' : ''}>
+              <input
+                {...register('gender', { required: 'Gênero é obrigatório' })}
+                type='radio'
+                value='F'
+              />{' '}
+              F{' '}
+            </label>
+
+            <label className={errors.gender ? 'input-error' : ''}>
+              <input
+                {...register('gender', { required: 'Gênero é obrigatório' })}
+                type='radio'
+                value='NI'
+              />{' '}
+              Não informado{' '}
+            </label>
+            {errors.gender && (
+              <small className='error-message'>{errors.gender.message}</small>
+            )}
+
+            <InputMask
+              mask='999.999.999-99'
+              placeholder='CPF'
+              maskChar={null}
+              {...register('cpf', {
+                required: 'CPF é obrigatório',
+                pattern: {
+                  value: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+                  message: 'Formato de CPF inválido',
+                },
+              })}
+            >
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  type='text'
+                  className={errors.cpf ? 'input-error' : ''}
+                />
+              )}
+            </InputMask>
+            {errors.cpf && (
+              <small className='error-message'>{errors.cpf.message}</small>
+            )}
+
+            <input
+              type='date'
+              className={errors.birthDate ? 'input-error' : ''}
+              {...register('birthDate', {
+                required: 'Data de nascimento é obrigatória',
+              })}
+            />
+            {errors.birthDate && (
+              <small className='error-message'>
+                {errors.birthDate.message}
+              </small>
+            )}
+
+            <InputMask
+              mask='99999-999'
+              placeholder='CEP'
+              maskChar={null}
+              {...register('zipCode', {
+                required: 'CEP é obrigatório',
+                pattern: /^\d{5}-\d{3}$/,
+                onBlur: (event) => {
+                  const cep = getValues('zipCode');
+                  if (cep && cep.length === 9) fetchCEP(cep);
+                },
+              })}
+            >
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  type='text'
+                  className={errors.zipCode ? 'input-error' : ''}
+                />
+              )}
+            </InputMask>
+            {errors.zipCode && (
+              <small className='error-message'>{errors.zipCode.message}</small>
+            )}
+
+            <input
+              type='text'
+              className={errors.street ? 'input-error' : ''}
+              placeholder='Rua'
+              {...register('street', { required: 'Rua é obrigatória' })}
+            />
+            {errors.street && (
+              <small className='error-message'>{errors.street.message}</small>
+            )}
+
+            <input
+              type='text'
+              className={errors.number ? 'input-error' : ''}
+              placeholder='Número'
+              {...register('number', { required: 'Número é obrigatório' })}
+            />
+            {errors.number && (
+              <small className='error-message'>{errors.number.message}</small>
+            )}
+
+            <input
+              type='text'
+              placeholder='Complemento'
+              {...register('complement')}
+            />
+
+            <input
+              type='text'
+              className={errors.neighborhood ? 'input-error' : ''}
+              placeholder='Bairro'
+              {...register('neighborhood', {
+                required: 'Bairro é obrigatório',
+              })}
+            />
+            {errors.neighborhood && (
+              <small className='error-message'>
+                {errors.neighborhood.message}
+              </small>
+            )}
+
+            <input
+              type='text'
+              className={errors.city ? 'input-error' : ''}
+              placeholder='Cidade'
+              {...register('city', { required: 'Cidade é obrigatória' })}
+            />
+            {errors.city && (
+              <small className='error-message'>{errors.city.message}</small>
+            )}
+
+            <input
+              type='text'
+              className={errors.state ? 'input-error' : ''}
+              placeholder='Estado'
+              {...register('state', { required: 'Estado é obrigatório' })}
+            />
+            {errors.state && (
+              <small className='error-message'>{errors.state.message}</small>
+            )}
+            <button type='submit'>Salvar Alterações</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
