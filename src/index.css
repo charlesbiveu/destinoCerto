@@ -45,7 +45,30 @@ a {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Usa a altura total da viewport para garantir que o footer possa ficar no fundo */
+}
+
+.login-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* Usa a altura total da viewport */
+  width: 100%;
+}
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95vw;
+  gap: 15px;
+}
+
+.singin {
+  margin-top: 40px;
+  text-align: center;
 }
 
 /* Estilos universais para logos, ajustados com media queries */
