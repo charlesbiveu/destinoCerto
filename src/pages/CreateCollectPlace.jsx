@@ -73,6 +73,7 @@ function CreatePlaces() {
             {errors.place && (
               <small className='error-message'>{errors.place.message}</small>
             )}
+
             <select
               className={errors.collect ? 'input-error' : ''}
               {...register('collect', { required: 'Informe o tipo de coleta' })}
@@ -96,10 +97,10 @@ function CreatePlaces() {
               <option value='Resíduos Volumosos'>Resíduos Volumosos</option>
               <option value='Vidros'>Vidros</option>
             </select>
-            {/* Exibir erro se o campo não for preenchido */}
             {errors.collect && (
               <small className='error-message'>{errors.collect.message}</small>
             )}
+
             <textarea
               className={errors.placeDescription ? 'input-error' : ''}
               placeholder='Descrição do local'
@@ -114,7 +115,6 @@ function CreatePlaces() {
             )}
 
             <InputMask
-              className={errors.zipCode ? 'input-error' : ''}
               mask='99999-999'
               placeholder='CEP'
               maskChar={null}
@@ -123,11 +123,18 @@ function CreatePlaces() {
                 pattern: /^\d{5}-\d{3}$/,
               })}
             >
-              {(inputProps) => <input {...inputProps} type='text' />}
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  type='text'
+                  className={errors.zipCode ? 'input-error' : ''}
+                />
+              )}
             </InputMask>
             {errors.zipCode && (
               <small className='error-message'>{errors.zipCode.message}</small>
             )}
+
             <input
               className={errors.street ? 'input-error' : ''}
               type='text'
@@ -137,6 +144,7 @@ function CreatePlaces() {
             {errors.street && (
               <small className='error-message'>{errors.street.message}</small>
             )}
+
             <input
               className={errors.number ? 'input-error' : ''}
               type='text'

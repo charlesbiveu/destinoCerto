@@ -161,7 +161,7 @@
       "user_id": 1,
       "collect": "Vidros",
       "place": "Ecoponto Dakir Polidoro",
-      "placeDescription": "Ponto de coleta de vidros",
+      "placeDescription": "Ponto de coleta de vidros. Localizado no meio da rua. Coleta padrão da Comcap.",
       "zipCode": "88063-565",
       "street": "Rua Radialista Dakir Polidoro",
       "number": "s/n",
@@ -187,22 +187,6 @@
       "state": "SC",
       "latitude": "-27.67203",
       "longitude": "-48.48181"
-    },
-    {
-      "id": 3,
-      "user_id": 8,
-      "collect": "Eletrônicos",
-      "place": "Teste de ponto 6",
-      "placeDescription": "asdfahafadfasdf",
-      "zipCode": "95900-174",
-      "street": "Rua Bento Gonçalves",
-      "number": "500",
-      "complement": "",
-      "neighborhood": "Centro",
-      "city": "Lajeado",
-      "state": "RS",
-      "latitude": "-29.44639",
-      "longitude": "-51.96137"
     },
     {
       "id": 4,
