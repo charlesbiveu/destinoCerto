@@ -10,7 +10,6 @@ import ListCollectPlaces from '../pages/ListCollectPlaces';
 import EditCollectPlace from '../pages/EditCollectPlace';
 import ListCollectPlacesByUser from '../pages/ListCollectPlacesByUser';
 import DetailsCollectPlace from '../pages/DetailsCollectPlace';
-import EditUserByAdmin from '../pages/EditUserByAdmin';
 
 let isLogged = JSON.parse(localStorage.getItem('isLogged')) || false;
 const PrivateRoute = ({ children }) => {

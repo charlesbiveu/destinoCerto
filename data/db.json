@@ -110,13 +110,13 @@
       "birthDate": "1975-04-15",
       "email": "teste35@teste.com.br",
       "password": "123456",
-      "street": "Rua Bento Gonçalves",
+      "street": "Servidão Alexandrino Pedro Daniel",
       "number": "401",
       "complement": "",
-      "neighborhood": "Centro",
-      "city": "Lajeado",
-      "state": "RS",
-      "zipCode": "95900-174",
+      "neighborhood": "Campeche",
+      "city": "Florianópolis",
+      "state": "SC",
+      "zipCode": "88063-535",
       "admin": false
     },
     {

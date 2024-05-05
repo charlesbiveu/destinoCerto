@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { UsersContext } from '../context/UsersContext';
+import { Link } from 'react-router-dom';
 import logo from '../assets/destinoCerto.png';
 import Footer from '../components/Footer';
 import { FaUserPlus } from 'react-icons/fa';
@@ -63,7 +64,10 @@ function CreateUsers() {
       <div className='container'>
         <div className='header-container'>
           <div className='logo-container'>
-            <img src={logo} className='logo' alt='Destino certo' />
+            <Link to='/'>
+              {' '}
+              <img src={logo} className='logo' alt='Destino certo' />{' '}
+            </Link>
           </div>
         </div>
         <div className='page-title'>
