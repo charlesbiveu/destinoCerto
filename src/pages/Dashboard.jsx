@@ -1,27 +1,43 @@
 import { useContext, useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { CollectPlaceContext } from '../context/CollectPlaceContext';
 import { UsersContext } from '../context/UsersContext';
 import { FaArrowsSpin } from 'react-icons/fa6';
 import { FaUsers } from 'react-icons/fa6';
+import { FaUser } from 'react-icons/fa';
 import { HiMapPin } from 'react-icons/hi2';
 import { FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaMapLocationDot } from 'react-icons/fa6';
 function Dashboard() {
   const { places, countPlaces } = useContext(CollectPlaceContext);
-  const { getUserById } = useContext(UsersContext);
-  const { users, countUsers } = useContext(UsersContext);
+  const { users, countUsers, getUserById } = useContext(UsersContext);
   const numUsers = countUsers();
   const numPlaces = countPlaces();
+  const [userNames, setUserNames] = useState({});
+
+  useEffect(() => {
+    places.forEach(async (place) => {
+      if (place.user_id && !userNames[place.user_id]) {
+        try {
+          const user = await getUserById(place.user_id);
+          setUserNames((prev) => ({ ...prev, [place.user_id]: user.name }));
+        } catch (error) {
+          console.error('Erro ao buscar dados do usuário', error);
+        }
+      }
+    });
+  }, [places, getUserById, userNames]);
+
   return (
     <>
-      <div className='page-title'>Dashboard</div>
       <div className='boxes'>
         <div className='box color-place'>
           <div className='box-icon'>
             <HiMapPin />
           </div>
           <div className='box-number'>{numPlaces}</div>
-          <div className='box-title'>Pontos de Coleta</div>
+          <div className='box-title'>Pontos Coleta</div>
         </div>
         <div className='box color-user'>
           <div className='box-icon'>
@@ -31,31 +47,57 @@ function Dashboard() {
           <div className='box-title'>Mó Quiridus</div>
         </div>
       </div>
-      <div className='page-title'>
-        <HiMapPin /> <span>Pontos Cadastrados</span>
+      <div className='page-title align-icon'>
+        <HiMapPin /> <span>Pontos de coleta</span>
       </div>
-      {places.map((place) => (
-        <div className='cards' key={place.id}>
-          <div className='card-places-list'>
-            <div className='card-places-list-description'>
-              <div className='card-places-name'> {place.place}</div>
-              <div className='card-places-list-description-collect'>
-                <small>Coleta:</small> {place.collect}
-              </div>
-              <div className='card-places-list-description-neighborhood'>
-                {place.neighborhood}
-              </div>
+      <div className='section-cards'>
+        {places.map((place) => (
+          <div className='cards' key={place.id}>
+            <div className='card-map'>
+              <MapContainer
+                center={[place.latitude, place.longitude]}
+                scrollWheelZoom={false}
+                zoom={13}
+                style={{ height: '200px', width: '100%' }}
+              >
+                <TileLayer
+                  url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker position={[place.latitude, place.longitude]}>
+                  <Popup>
+                    {place.place} <br /> {place.placeDescription}
+                  </Popup>
+                </Marker>
+              </MapContainer>
             </div>
-            <div className='card-link-places-details'>
-              <Link to={`/collectPlaces/details/${place.id}`}>
-                <FaEye />
-              </Link>
+            <div className='card-body'>
+              <div className='align-icon success'>
+                <HiMapPin /> <span className='primary-bold'>{place.place}</span>
+              </div>
+              <div className='align-icon success'>
+                <FaArrowsSpin />{' '}
+                <span className='primary-bold'>{place.collect}</span>
+              </div>
+              <div className='align-icon success'>
+                <FaMapLocationDot />{' '}
+                <small className='primary-bold'>{place.neighborhood}</small>
+              </div>
+
+              <div className='align-icon success'>
+                <FaUser />{' '}
+                <small className='primary-bold'>
+                  {userNames[place.user_id] || 'Carregando...'}
+                </small>
+              </div>
+              <div className='link-details'>
+                <Link className='btn' to={`/collectPlaces/details/${place.id}`}>
+                  <FaEye /> <small>detalhes</small>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      <div className='page-title'>
-        <FaUsers /> <span>Mó Quiridus</span>
+        ))}
       </div>
     </>
   );
