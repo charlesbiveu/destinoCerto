@@ -10,13 +10,16 @@ import { MdDelete } from 'react-icons/md';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { MdTextsms } from 'react-icons/md';
 import { FaUser } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 
 let loggedId = JSON.parse(localStorage.getItem('user_id'));
 let isAdmin = JSON.parse(localStorage.getItem('admin'));
 function ListCollectPlaces() {
   const { places, deletePlace } = useContext(CollectPlaceContext);
   const { getUserById } = useContext(UsersContext);
-
+  const MapLink = ({ placeId, children }) => (
+    <Link to={`/collectPlaces/details/${placeId}`}>{children}</Link>
+  );
   // esse useState vai armazenar o nome do usuário que registrou o local de coleta
   const [userNames, setUserNames] = useState({});
 
@@ -39,6 +42,51 @@ function ListCollectPlaces() {
       <div className='page-title align-icon'>
         <HiMapPin /> <span>Locais de coleta</span>
       </div>
+      {/* mapa com todos locais */}
+      <div className='card-detail'>
+        <div className='card-detail-header'>
+          <div className='align-icon'>
+            <FaArrowsSpin /> <span>Todos Pontos de Coleta</span>
+          </div>
+          <div className='align-icon'>
+            <span>
+              <HiMapPin /> Florianópolis
+            </span>
+          </div>
+        </div>
+        <div className='card-detail-body'>
+          <div className='card-detail-map'>
+            <MapContainer
+              center={[-27.6626, -48.49987]} // cordenadas iniciais para o mapa
+              zoom={10}
+              scrollWheelZoom={true}
+              style={{ height: '400px', width: '100%' }}
+            >
+              <TileLayer
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              {places.map((place) => (
+                <Marker
+                  key={place.id}
+                  position={[place.latitude, place.longitude]}
+                >
+                  <Popup>
+                    <strong>{place.place}</strong> <br />
+                    <br /> {place.placeDescription}
+                    <br />
+                    <br />
+                    <MapLink placeId={place.id}>
+                      <FaEye /> <small>detalhes</small>
+                    </MapLink>
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </div>
+        </div>
+      </div>
+
       {places.map((place) => (
         <div className='card-detail' key={place.id}>
           <div className='card-detail-header'>

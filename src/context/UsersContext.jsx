@@ -140,6 +140,35 @@ export const UsersContextProvider = ({ children }) => {
   }
 
   async function updateUser(id, userData) {
+    if (!userData.name || userData.name.trim() === '') {
+      alert('Preencha o nome completo');
+      return false;
+    }
+    if (!userData.cpf || userData.cpf.trim() === '') {
+      alert('Preencha o CPF');
+      return false;
+    }
+    if (!isCPFValid(userData.cpf)) {
+      alert('CPF inválido');
+      return false;
+    }
+    // Verificação de duplicidade de CPF
+    const existingCPF = users.find(
+      (u) => u.cpf === userData.cpf && Number(u.id) !== Number(id)
+    );
+    if (existingCPF) {
+      alert('Já existe um usuário cadastrado com este CPF');
+      return false;
+    }
+
+    // Verificação de duplicidade de email
+    const existingEmail = users.find(
+      (m) => m.email === userData.email && Number(m.id) !== Number(id)
+    );
+    if (existingEmail) {
+      alert('Já existe um usuário cadastrado com este E-mail');
+      return false;
+    }
     const response = await fetch(`http://localhost:3000/users/${id}`, {
       method: 'PUT',
       headers: {
@@ -151,6 +180,7 @@ export const UsersContextProvider = ({ children }) => {
       throw new Error('Falha ao atualizar usuário');
     }
     getUsers(); // Atualiza a lista de usuários após a atualização
+    return true;
   }
 
   function deleteUser(id) {
@@ -175,6 +205,7 @@ export const UsersContextProvider = ({ children }) => {
         updateUser,
         countUsers,
         deleteUser,
+        isCPFValid,
       }}
     >
       {children}

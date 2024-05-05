@@ -59,9 +59,11 @@ function EditUser() {
 
   const onSubmit = async (data) => {
     try {
-      await updateUser(id, data);
-      alert('Agora sim Mó Quiridu, conta atualizada com sucesso!');
-      navigate(isAdmin ? '/users/list' : '/');
+      const updateSuccess = await updateUser(id, data);
+      if (updateSuccess) {
+        alert('Agora sim Mó Quiridu, conta atualizada com sucesso!');
+        navigate(isAdmin ? '/users/list' : '/');
+      }
     } catch (error) {
       alert(
         ' Oxi o Boca Moli do programador fez algo errado, tente novamente!'

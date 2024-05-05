@@ -16,6 +16,10 @@ function Dashboard() {
   const numPlaces = countPlaces();
   const [userNames, setUserNames] = useState({});
 
+  const MapLink = ({ placeId, children }) => (
+    <Link to={`/collectPlaces/details/${placeId}`}>{children}</Link>
+  );
+
   useEffect(() => {
     places.forEach(async (place) => {
       if (place.user_id && !userNames[place.user_id]) {
@@ -50,6 +54,51 @@ function Dashboard() {
       <div className='page-title align-icon'>
         <HiMapPin /> <span>Pontos de coleta</span>
       </div>
+      {/* mapa com todos locais */}
+      <div className='card-detail'>
+        <div className='card-detail-header'>
+          <div className='align-icon'>
+            <FaArrowsSpin /> <span>Todos Pontos de Coleta</span>
+          </div>
+          <div className='align-icon'>
+            <span>
+              <HiMapPin /> Florianópolis
+            </span>
+          </div>
+        </div>
+        <div className='card-detail-body'>
+          <div className='card-detail-map'>
+            <MapContainer
+              center={[-27.6626, -48.49987]} // cordenadas iniciais para o mapa
+              zoom={10}
+              scrollWheelZoom={false}
+              style={{ height: '400px', width: '100%' }}
+            >
+              <TileLayer
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              {places.map((place) => (
+                <Marker
+                  key={place.id}
+                  position={[place.latitude, place.longitude]}
+                >
+                  <Popup>
+                    <strong>{place.place}</strong> <br />
+                    <br /> {place.placeDescription}
+                    <br />
+                    <br />
+                    <MapLink placeId={place.id}>
+                      <FaEye /> <small>detalhes</small>
+                    </MapLink>
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </div>
+        </div>
+      </div>
+
       <div className='section-cards'>
         {places.map((place) => (
           <div className='cards' key={place.id}>
