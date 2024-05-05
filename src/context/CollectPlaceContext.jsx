@@ -43,6 +43,22 @@ export const CollectPlaceContextProvider = ({ children }) => {
     return response.json();
   }
 
+  async function countPlacesByUserId(user_id) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/collectPlaces?user_id=${user_id}`
+      );
+      if (!response.ok) {
+        throw new Error('Falha ao buscar locais de');
+      }
+      const places = await response.json();
+      return places.length; // Retorna a quantidade de locais de coleta para esse usuário
+    } catch (error) {
+      console.error('Erro ao contar locais de coleta por usuário:', error);
+      return 0; // Retorna zero em caso de erro
+    }
+  }
+
   async function updatePlace(id, placeData) {
     const response = await fetch(`http://localhost:3000/collectPlaces/${id}`, {
       method: 'PUT',
@@ -88,6 +104,7 @@ export const CollectPlaceContextProvider = ({ children }) => {
         getCollectPlacesByUserId,
         deletePlace,
         countPlaces,
+        countPlacesByUserId,
       }}
     >
       {children}

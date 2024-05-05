@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { UsersContext } from '../context/UsersContext';
 import { FaUserEdit } from 'react-icons/fa';
 let isAdmin = JSON.parse(localStorage.getItem('admin'));
-function EditUser() {
+function EditUserByAdmin() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { getUserById, updateUser } = useContext(UsersContext);
   const [loading, setLoading] = useState(true);
   const {
@@ -60,8 +59,7 @@ function EditUser() {
   const onSubmit = async (data) => {
     try {
       await updateUser(id, data);
-      alert('Agora sim Mó Quiridu, conta atualizada com sucesso!');
-      navigate(isAdmin ? '/users/list' : '/');
+      alert('Agora sim Mó Quiridu, sua conta foi atualizada com sucesso!');
     } catch (error) {
       alert(
         ' Oxi o Boca Moli do programador fez algo errado, tente novamente!'
@@ -77,7 +75,7 @@ function EditUser() {
   return (
     <div>
       <div className='page-title'>
-        <FaUserEdit /> <span>Atualizar dados</span>
+        <FaUserEdit /> <span>Atualizar seus dados</span>
       </div>
       <div className='container-form'>
         <div className='card-form'>
@@ -255,10 +253,10 @@ function EditUser() {
             )}
             {isAdmin && (
               <label>
-                <input type='checkbox' {...register('admin')} /> Admin do
-                destino Certo
+                <input type='checkbox' {...register('admin')} /> Admin
               </label>
             )}
+
             <button type='submit'>Salvar Alterações</button>
           </form>
         </div>
@@ -267,4 +265,4 @@ function EditUser() {
   );
 }
 
-export default EditUser;
+export default EditUserByAdmin;

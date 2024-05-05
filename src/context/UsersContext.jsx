@@ -153,6 +153,17 @@ export const UsersContextProvider = ({ children }) => {
     getUsers(); // Atualiza a lista de usuários após a atualização
   }
 
+  function deleteUser(id) {
+    fetch(`http://localhost:3000/users/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        alert('Usuário deletado com sucesso!');
+        getUsers(); // Atualiza a lista após a exclusão
+      })
+      .catch(() => alert('Erro ao deletar usuário'));
+  }
+
   return (
     <UsersContext.Provider
       value={{
@@ -163,6 +174,7 @@ export const UsersContextProvider = ({ children }) => {
         getUserById,
         updateUser,
         countUsers,
+        deleteUser,
       }}
     >
       {children}

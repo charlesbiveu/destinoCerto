@@ -44,10 +44,7 @@ function Header() {
                   </div>
                   <ul className='dropdown-content'>
                     <li>
-                      <Link to='/users/list'>Listar</Link>
-                    </li>
-                    <li>
-                      <Link to='/users/create'>Cadastrar</Link>
+                      <Link to='/users/list'>Listar Usuários</Link>
                     </li>
                   </ul>
                 </li>

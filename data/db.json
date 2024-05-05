@@ -103,23 +103,6 @@
       "admin": false
     },
     {
-      "id": 7,
-      "name": "Teste 05",
-      "gender": "M",
-      "cpf": "222.222.222-22",
-      "birthDate": "2024-05-02",
-      "email": "teste03@teste.com.br",
-      "password": "123456",
-      "street": "Rua Auroreal",
-      "number": "42",
-      "complement": "",
-      "neighborhood": "Campeche",
-      "city": "Florianópolis",
-      "state": "SC",
-      "zipCode": "88063-201",
-      "admin": false
-    },
-    {
       "id": 8,
       "name": "Teste 35",
       "gender": "F",
