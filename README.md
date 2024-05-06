@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/charles-futDevFloripa/destinoCerto/blob/develop/public/DestinoCertoLogoBlur.png" alt="Logo do Destino Certo">
+  <img src="https://github.com/charles-futDevFloripa/destinoCerto/blob/develop/public/destinoCerto.png" alt="Logo do Destino Certo">
 </p>
 
 # Destino Certo
