@@ -118,6 +118,15 @@ a {
 
 }
 
+.page-title-form {
+  width: 100%;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--space-cadet);
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
 .page-title {
   width: 100%;
   font-size: 1.4em;
@@ -408,11 +417,7 @@ a {
 
 
 
-
-
 /* Estilos para formulários e erros */
-
-/* Estilos específicos do formulário */
 .container-form {
   width: 95%;
   margin-left: auto;

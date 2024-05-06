@@ -22,32 +22,27 @@ export const UsersContextProvider = ({ children }) => {
 
   function createUser(user) {
     if (!user.name || user.name.trim() === '') {
-      alert('Preencha o nome completo');
+      alert('O Querido deixa saberem quem tu és');
       return;
     }
     if (!user.cpf || user.cpf.trim() === '') {
-      alert('Preencha o CPF');
-      return;
-    }
-    // valida o cpf
-    if (!user.cpf || user.cpf.trim() === '') {
-      alert('Preencha o CPF');
+      alert('Aqueles números do CPF. Não tem? Coloca ai!');
       return;
     }
     if (!isCPFValid(user.cpf)) {
-      alert('CPF inválido');
+      alert('Não amarrar a cara, mas o CPF tá errado');
       return;
     }
     // valida se já existe o cpf
     const existingUser = users.find((u) => u.cpf === user.cpf);
     if (existingUser) {
-      alert('Já existe um usuário cadastrado com este CPF');
+      alert('Já tem um queridu com este CPF.');
       return;
     }
     // validar o email tb já que é usado para login
     const existingEmail = users.find((m) => m.email === user.email);
     if (existingEmail) {
-      alert('Já existe um usuário cadastrado com este E-mail');
+      alert('Já tem um queridu com este E-mail.');
       return;
     }
 
@@ -59,12 +54,16 @@ export const UsersContextProvider = ({ children }) => {
       body: JSON.stringify(user),
     })
       .then(() => {
-        alert('Usuário criado com sucesso');
+        alert('Arrombassi! Sua conta foi criado com sucesso');
         getUsers();
         window.location.href = '/';
         return;
       })
-      .catch(() => alert('Erro ao criar o usuário'));
+      .catch(() =>
+        alert(
+          'Sabe aquele boca-moli do programador? Aquele que mora lá pelo Campeche? Pois errou de novo.'
+        )
+      );
   }
 
   //valida o cpf
@@ -141,15 +140,15 @@ export const UsersContextProvider = ({ children }) => {
 
   async function updateUser(id, userData) {
     if (!userData.name || userData.name.trim() === '') {
-      alert('Preencha o nome completo');
+      alert('O Querido deixa saberem quem tu és');
       return false;
     }
     if (!userData.cpf || userData.cpf.trim() === '') {
-      alert('Preencha o CPF');
+      alert('Aqueles números do CPF. Não tem? Coloca ai!');
       return false;
     }
     if (!isCPFValid(userData.cpf)) {
-      alert('CPF inválido');
+      alert('Não amarrar a cara, mas o CPF tá errado.');
       return false;
     }
     // Verificação de duplicidade de CPF
@@ -157,7 +156,7 @@ export const UsersContextProvider = ({ children }) => {
       (u) => u.cpf === userData.cpf && Number(u.id) !== Number(id)
     );
     if (existingCPF) {
-      alert('Já existe um usuário cadastrado com este CPF');
+      alert('Já tem um queridu com este CPF');
       return false;
     }
 
@@ -166,7 +165,7 @@ export const UsersContextProvider = ({ children }) => {
       (m) => m.email === userData.email && Number(m.id) !== Number(id)
     );
     if (existingEmail) {
-      alert('Já existe um usuário cadastrado com este E-mail');
+      alert('JJá tem um queridu com este E-mail.');
       return false;
     }
     const response = await fetch(`http://localhost:3000/users/${id}`, {
@@ -188,10 +187,14 @@ export const UsersContextProvider = ({ children }) => {
       method: 'DELETE',
     })
       .then(() => {
-        alert('Usuário deletado com sucesso!');
+        alert('Em dois toques deletou o queridu!');
         getUsers(); // Atualiza a lista após a exclusão
       })
-      .catch(() => alert('Erro ao deletar usuário'));
+      .catch(() =>
+        alert(
+          'Sabe aquele boca-moli do programador? Aquele que mora lá pelo Campeche? Pois errou de novo. Não deletou o queridu.'
+        )
+      );
   }
 
   return (

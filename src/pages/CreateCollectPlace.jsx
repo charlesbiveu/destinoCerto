@@ -38,10 +38,12 @@ function CreatePlaces() {
             setValue('city', data.localidade);
             setValue('state', data.uf);
           } else {
-            alert('CEP não encontrado.');
+            alert('Não amarrar a cara, mas o CEP não foi encontrado');
           }
         })
-        .catch((error) => console.error('Erro ao buscar CEP', error));
+        .catch((error) =>
+          console.error('Que tanso esse programador, erro ao buscar CEP', error)
+        );
     }
   }, [cep, setValue]);
 
@@ -56,18 +58,18 @@ function CreatePlaces() {
 
   return (
     <>
-      <div className='page-title'>
-        <RiMapPinAddFill /> <span>Cadastrar ponto de coleta</span>
-      </div>
       <div className='container-form'>
         <div className='card-form'>
+          <div className='page-title-form align-icon'>
+            <RiMapPinAddFill /> <span>Cadastrar ponto de coleta</span>
+          </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type='text'
               className={errors.place ? 'input-error' : ''}
               placeholder='Nome do ponto de coleta'
               {...register('place', {
-                required: 'Informe o nome do local de coleta',
+                required: 'Dásh um nome para o ponto de coleta',
               })}
             />
             {errors.place && (
@@ -76,7 +78,9 @@ function CreatePlaces() {
 
             <select
               className={errors.collect ? 'input-error' : ''}
-              {...register('collect', { required: 'Informe o tipo de coleta' })}
+              {...register('collect', {
+                required: 'Os queridus querem saber o que coleta',
+              })}
             >
               <option value=''> Tipo de Coleta</option>
               <option value='Animais Mortos'>Animais Mortos</option>
@@ -105,7 +109,7 @@ function CreatePlaces() {
               className={errors.placeDescription ? 'input-error' : ''}
               placeholder='Descrição do local'
               {...register('placeDescription', {
-                required: 'Descreva o local',
+                required: 'Aproveita e fala sobre o local',
               })}
             />
             {errors.placeDescription && (
@@ -119,7 +123,7 @@ function CreatePlaces() {
               placeholder='CEP'
               maskChar={null}
               {...register('zipCode', {
-                required: 'CEP é obrigatório',
+                required: 'Não amarra a cara, mas o CEP é obrigatório',
                 pattern: /^\d{5}-\d{3}$/,
               })}
             >
@@ -139,7 +143,7 @@ function CreatePlaces() {
               className={errors.street ? 'input-error' : ''}
               type='text'
               placeholder='Rua'
-              {...register('street', { required: 'Rua é obrigatória' })}
+              {...register('street', { required: 'Esqueceu da Rua?' })}
             />
             {errors.street && (
               <small className='error-message'>{errors.street.message}</small>
@@ -149,7 +153,9 @@ function CreatePlaces() {
               className={errors.number ? 'input-error' : ''}
               type='text'
               placeholder='Número'
-              {...register('number', { required: 'Número é obrigatório' })}
+              {...register('number', {
+                required: 'Se não tem número, coloca s/n',
+              })}
             />
             {errors.number && (
               <small className='error-message'>{errors.number.message}</small>
@@ -164,7 +170,7 @@ function CreatePlaces() {
               type='text'
               placeholder='Bairro'
               {...register('neighborhood', {
-                required: 'Bairro é obrigatório',
+                required: 'Os queridos querem saber da vizinhança!',
               })}
             />
             {errors.neighborhood && (
@@ -176,7 +182,9 @@ function CreatePlaces() {
               className={errors.city ? 'input-error' : ''}
               type='text'
               placeholder='Cidade'
-              {...register('city', { required: 'Cidade é obrigatória' })}
+              {...register('city', {
+                required: 'Cidade precisa, mesmo que seja em Floripa.',
+              })}
             />
             {errors.city && (
               <small className='error-message'>{errors.city.message}</small>
@@ -185,7 +193,9 @@ function CreatePlaces() {
               className={errors.state ? 'input-error' : ''}
               type='text'
               placeholder='Estado'
-              {...register('state', { required: 'Estado é obrigatório' })}
+              {...register('state', {
+                required: 'Faltou aquelas duas letrinhas do eshtado',
+              })}
             />
             {errors.state && (
               <small className='error-message'>{errors.state.message}</small>
@@ -195,8 +205,7 @@ function CreatePlaces() {
               type='text'
               placeholder='Latitude'
               {...register('latitude', {
-                required:
-                  'Latitude é obrigatória. Use o google maps para encontrar',
+                required: 'Latitude é obrigatória. O google maps te ajuda',
               })}
             />
             {errors.latitude && (
@@ -207,8 +216,7 @@ function CreatePlaces() {
               type='text'
               placeholder='Longitude'
               {...register('longitude', {
-                required:
-                  'Longitude é obrigatória. Use o google maps para encontrar',
+                required: 'Longitude é obrigatória. O google maps te ajuda',
               })}
             />
             {errors.longitude && (

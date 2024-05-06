@@ -50,7 +50,7 @@ function EditCollectPlace() {
             setValue('city', data.localidade);
             setValue('state', data.uf);
           } else {
-            alert('CEP não encontrado.');
+            alert('Não amarrar a cara, mas o CEP não foi encontrado.');
           }
         })
         .catch((error) => console.error('Erro ao buscar CEP', error));
@@ -60,10 +60,12 @@ function EditCollectPlace() {
   const onSubmit = async (data) => {
     try {
       await updatePlace(id, data);
-      alert('Local de coleta atualizado com sucesso!');
+      alert('Dazumbanho! O local de coleta atualizou certinho!');
       navigate(`/collectPlaces/details/${id}`);
     } catch (error) {
-      alert('Erro ao atualizar local de coleta');
+      alert(
+        'Sabe aquele boca-moli do programador? Aquele que mora lá pelo Campeche? Pois errou de novo. Erro ao atualizar local de coleta'
+      );
       console.error('Erro ao atualizar local de coleta:', error);
     }
   };
@@ -85,7 +87,7 @@ function EditCollectPlace() {
               className={errors.place ? 'input-error' : ''}
               placeholder='Nome do ponto de coleta'
               {...register('place', {
-                required: 'Informe o nome do local de coleta',
+                required: 'Dásh um nome para o ponto de coleta',
               })}
             />
             {errors.place && (
@@ -94,7 +96,9 @@ function EditCollectPlace() {
 
             <select
               className={errors.collect ? 'input-error' : ''}
-              {...register('collect', { required: 'Informe o tipo de coleta' })}
+              {...register('collect', {
+                required: 'Os queridus querem saber o que coleta',
+              })}
             >
               <option value=''> Tipo de Coleta</option>
               <option value='Animais Mortos'>Animais Mortos</option>
@@ -123,7 +127,7 @@ function EditCollectPlace() {
               className={errors.placeDescription ? 'input-error' : ''}
               placeholder='Descrição do local'
               {...register('placeDescription', {
-                required: 'Descreva o local',
+                required: 'Aproveita e fala sobre o local',
               })}
             />
             {errors.placeDescription && (
@@ -137,7 +141,7 @@ function EditCollectPlace() {
               placeholder='CEP'
               maskChar={null}
               {...register('zipCode', {
-                required: 'CEP é obrigatório',
+                required: 'Não amarra a cara, mas o CEP é obrigatório',
                 pattern: /^\d{5}-\d{3}$/,
               })}
             >
@@ -157,7 +161,7 @@ function EditCollectPlace() {
               type='text'
               className={errors.street ? 'input-error' : ''}
               placeholder='Rua'
-              {...register('street', { required: 'Rua é obrigatória' })}
+              {...register('street', { required: 'Esqueceu da Rua?' })}
             />
             {errors.street && (
               <small className='error-message'>{errors.street.message}</small>
@@ -167,7 +171,9 @@ function EditCollectPlace() {
               type='text'
               className={errors.number ? 'input-error' : ''}
               placeholder='Número'
-              {...register('number', { required: 'Número é obrigatório' })}
+              {...register('number', {
+                required: 'Se não tem número, coloca s/n',
+              })}
             />
             {errors.number && (
               <small className='error-message'>{errors.number.message}</small>
@@ -184,7 +190,7 @@ function EditCollectPlace() {
               className={errors.neighborhood ? 'input-error' : ''}
               placeholder='Bairro'
               {...register('neighborhood', {
-                required: 'Bairro é obrigatório',
+                required: 'Os queridos querem saber da vizinhança!',
               })}
             />
             {errors.neighborhood && (
@@ -197,7 +203,9 @@ function EditCollectPlace() {
               type='text'
               className={errors.city ? 'input-error' : ''}
               placeholder='Cidade'
-              {...register('city', { required: 'Cidade é obrigatória' })}
+              {...register('city', {
+                required: 'Cidade precisa, mesmo que seja em Floripa.',
+              })}
             />
             {errors.city && (
               <small className='error-message'>{errors.city.message}</small>
@@ -207,7 +215,9 @@ function EditCollectPlace() {
               type='text'
               className={errors.state ? 'input-error' : ''}
               placeholder='Estado'
-              {...register('state', { required: 'Estado é obrigatório' })}
+              {...register('state', {
+                required: 'Faltou aquelas duas letrinhas do eshtado',
+              })}
             />
             {errors.state && (
               <small className='error-message'>{errors.state.message}</small>
@@ -218,8 +228,7 @@ function EditCollectPlace() {
               className={errors.latitude ? 'input-error' : ''}
               placeholder='Latitude'
               {...register('latitude', {
-                required:
-                  'Latitude é obrigatória. Use o google maps para encontrar',
+                required: 'Latitude é obrigatória. O google maps te ajuda',
               })}
             />
             {errors.latitude && (
@@ -231,8 +240,7 @@ function EditCollectPlace() {
               className={errors.longitude ? 'input-error' : ''}
               placeholder='Longitude'
               {...register('longitude', {
-                required:
-                  'Longitude é obrigatória. Use o google maps para encontrar',
+                required: 'Longitude é obrigatória. O google maps te ajuda',
               })}
             />
             {errors.longitude && (

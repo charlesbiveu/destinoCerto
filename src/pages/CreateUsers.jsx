@@ -41,16 +41,18 @@ function CreateUsers() {
             setValue('city', data.localidade);
             setValue('state', data.uf);
           } else {
-            alert('CEP não encontrado.');
+            alert('Não amarrar a cara, mas o CEP não foi encontrado.');
           }
         })
-        .catch((error) => console.error('Erro ao buscar CEP', error));
+        .catch((error) =>
+          console.error('Que tanso esse programador, erro ao buscar CEP', error)
+        );
     }
   }, [cep, setValue]);
 
   const onSubmit = (data) => {
     if (data.password !== data['confirmPassword']) {
-      alert('Senhas não conferem');
+      alert('Oh querido as senhas não batem!');
       return;
     }
     defaultValues: {
@@ -70,11 +72,12 @@ function CreateUsers() {
             </Link>
           </div>
         </div>
-        <div className='page-title'>
-          <FaUserPlus /> <span>Se cadatra Mó Quiridu!</span>
-        </div>
+
         <div className='container-form'>
           <div className='card-form'>
+            <div className='page-title-form'>
+              <FaUserPlus /> <span>Se cadatra Mó Quiridu!</span>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className='align-icon'>
                 <FaUserPlus /> <span>Informações pessoais</span>
@@ -83,7 +86,7 @@ function CreateUsers() {
                 type='text'
                 className={errors.name ? 'input-error' : ''}
                 placeholder='Nome completo'
-                {...register('name', { required: 'Insira seu nome' })}
+                {...register('name', { required: 'Oh queridu o nome precisa' })}
               />
               {errors.name && (
                 <small className='error-message'>{errors.name.message}</small>
@@ -91,7 +94,9 @@ function CreateUsers() {
               {/* Radio buttons para gênero */}
               <label className={errors.gender ? 'input-error' : ''}>
                 <input
-                  {...register('gender', { required: 'Gênero é obrigatório' })}
+                  {...register('gender', {
+                    required: 'Se quex, quex, se não quex, dix',
+                  })}
                   type='radio'
                   value='M'
                 />{' '}
@@ -99,7 +104,9 @@ function CreateUsers() {
               </label>
               <label className={errors.gender ? 'input-error' : ''}>
                 <input
-                  {...register('gender', { required: 'Gênero é obrigatório' })}
+                  {...register('gender', {
+                    required: 'Se quex, quex, se não quex, dix',
+                  })}
                   type='radio'
                   value='F'
                 />{' '}
@@ -107,7 +114,9 @@ function CreateUsers() {
               </label>
               <label className={errors.gender ? 'input-error' : ''}>
                 <input
-                  {...register('gender', { required: 'Gênero é obrigatório' })}
+                  {...register('gender', {
+                    required: 'Se quex, quex, se não quex, dix',
+                  })}
                   type='radio'
                   value='NI'
                 />{' '}
@@ -122,7 +131,7 @@ function CreateUsers() {
                 placeholder='CPF'
                 maskChar={null}
                 {...register('cpf', {
-                  required: 'CPF é obrigatório',
+                  required: 'Aqueles números do CPF. Não tem? Coloca ai!',
                   pattern: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
                 })}
               >
@@ -139,13 +148,13 @@ function CreateUsers() {
               )}
               <div className='align-icon'>
                 <RiCakeFill />{' '}
-                <span>Seu níver é antes da safra da tainha?</span>
+                <span>O aniversário é antes da safra da tainha?</span>
               </div>
               <input
                 type='date'
                 className={errors.birthDate ? 'input-error' : ''}
                 {...register('birthDate', {
-                  required: 'Data de nascimento é obrigatória',
+                  required: 'Dix aqui a data. Ninguém vai saber a idade.',
                 })}
               />
               {errors.birthDate && (
@@ -162,7 +171,7 @@ function CreateUsers() {
                 placeholder='CEP'
                 maskChar={null}
                 {...register('zipCode', {
-                  required: 'CEP é obrigatório',
+                  required: 'Não amarra a cara, mas o CEP é obrigatório',
                   pattern: /^\d{5}-\d{3}$/,
                 })}
               >
@@ -184,7 +193,7 @@ function CreateUsers() {
                 type='text'
                 className={errors.street ? 'input-error' : ''}
                 placeholder='Rua'
-                {...register('street', { required: 'Rua é obrigatória' })}
+                {...register('street', { required: 'Esqueceu da Rua?' })}
               />
               {errors.street && (
                 <small className='error-message'>{errors.street.message}</small>
@@ -195,7 +204,7 @@ function CreateUsers() {
                 className={errors.number ? 'input-error' : ''}
                 placeholder='Número'
                 {...register('number', {
-                  required: 'Número é obrigatório',
+                  required: 'Se não tem número, coloca s/n',
                 })}
               />
               {errors.number && (
@@ -213,7 +222,7 @@ function CreateUsers() {
                 className={errors.neighborhood ? 'input-error' : ''}
                 placeholder='Bairro'
                 {...register('neighborhood', {
-                  required: 'Bairro é obrigatório',
+                  required: 'Os queridus querem saber da vizinhança!',
                 })}
               />
               {errors.neighborhood && (
@@ -226,7 +235,9 @@ function CreateUsers() {
                 type='text'
                 className={errors.city ? 'input-error' : ''}
                 placeholder='Cidade'
-                {...register('city', { required: 'Cidade é obrigatória' })}
+                {...register('city', {
+                  required: 'É em Floripa? Precisax dizer também.',
+                })}
               />
               {errors.city && (
                 <small className='error-message'>{errors.city.message}</small>
@@ -236,7 +247,9 @@ function CreateUsers() {
                 type='text'
                 className={errors.state ? 'input-error' : ''}
                 placeholder='Estado'
-                {...register('state', { required: 'Estado é obrigatório' })}
+                {...register('state', {
+                  required: 'Faltou aquelas duas letrinhas do exhtado',
+                })}
               />
               {errors.state && (
                 <small className='error-message'>{errors.state.message}</small>
@@ -250,7 +263,9 @@ function CreateUsers() {
                 type='email'
                 className={errors.email ? 'input-error' : ''}
                 placeholder='E-mail'
-                {...register('email', { required: 'E-mail é obrigatório' })}
+                {...register('email', {
+                  required: 'A gente manda cartinha pro boi de mamão',
+                })}
               />
               {errors.email && (
                 <small className='error-message'>{errors.email.message}</small>
@@ -263,9 +278,9 @@ function CreateUsers() {
                 className={errors.password ? 'input-error' : ''}
                 placeholder='Senha'
                 {...register('password', {
-                  required: 'Senha é obrigatória',
+                  required: 'Dix uma senha não vai esquecer.',
                   minLength: 6,
-                  message: 'A senha deve ter pelo menos 6 caracteres',
+                  message: 'É Seix letrinhas no mínimo.',
                 })}
               />
               {errors.password && (
@@ -279,9 +294,9 @@ function CreateUsers() {
                 className={errors.confirmPassword ? 'input-error' : ''}
                 placeholder='Confirmar senha'
                 {...register('confirmPassword', {
-                  required: 'Confirmação de senha é obrigatória',
+                  required: 'Oh queridu, confirma a senha.',
                   minLength: 6,
-                  message: 'A senha deve ter pelo menos 6 caracteres',
+                  message: 'É Seix letrinhas no mínimo.',
                 })}
               />
               {errors.confirmPassword && (

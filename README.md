@@ -43,7 +43,7 @@ O projeto **Destino Certo** adota uma arquitetura inspirada no modelo MVC, com a
 
 ### Estado e Gerenciamento
 
-Utilizei a Context API para gerenciar os estados globais da aplicação, divididos em dois contextos principais:
+Foi utilizado Context API para gerenciar os estados globais da aplicação, divididos em dois contextos principais:
 
 - **UserContext**: Gerencia funcionalidades relacionadas aos usuários.
 - **CollectPlaceContext**: Controla as operações relacionadas aos pontos de coleta.
@@ -58,8 +58,6 @@ Destino Certo foi desenvolvido para suportar diferentes resoluções de tela. O 
 do conceito mobile-first para depois abranger telas maiores.
 
 https://github.com/charles-futDevFloripa/destinoCerto/assets/164348201/8957decf-54b0-48ae-ae7b-3f973d97ffd5
-
-
 
 ### Área administrativa
 

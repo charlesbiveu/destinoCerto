@@ -50,7 +50,7 @@ function EditUser() {
             setValue('city', data.localidade);
             setValue('state', data.uf);
           } else {
-            alert('CEP não encontrado.');
+            alert('Não amarrar a cara, mas o CEP não foi encontrado.');
           }
         })
         .catch((error) => console.error('Erro ao buscar CEP', error));
@@ -88,7 +88,7 @@ function EditUser() {
               type='text'
               className={errors.name ? 'input-error' : ''}
               placeholder='Nome'
-              {...register('name', { required: 'Nome completo é obrigatório' })}
+              {...register('name', { required: 'Oh queridu o nome precisa.' })}
             />
             {errors.name && (
               <small className='error-message'>{errors.name.message}</small>
@@ -98,7 +98,9 @@ function EditUser() {
               type='text'
               className={errors.email ? 'input-error' : ''}
               placeholder='E-mail'
-              {...register('email', { required: 'E-mail é obrigatório' })}
+              {...register('email', {
+                required: 'E-mail a gente manda cartinha pro boi de mamão',
+              })}
             />
             {errors.email && (
               <small className='error-message'>{errors.email.message}</small>
@@ -106,7 +108,9 @@ function EditUser() {
 
             <label className={errors.gender ? 'input-error' : ''}>
               <input
-                {...register('gender', { required: 'Gênero é obrigatório' })}
+                {...register('gender', {
+                  required: 'Se quex, quex, se não quex, dix',
+                })}
                 type='radio'
                 value='M'
               />{' '}
@@ -115,7 +119,9 @@ function EditUser() {
 
             <label className={errors.gender ? 'input-error' : ''}>
               <input
-                {...register('gender', { required: 'Gênero é obrigatório' })}
+                {...register('gender', {
+                  required: 'Se quex, quex, se não quex, dix',
+                })}
                 type='radio'
                 value='F'
               />{' '}
@@ -124,7 +130,9 @@ function EditUser() {
 
             <label className={errors.gender ? 'input-error' : ''}>
               <input
-                {...register('gender', { required: 'Gênero é obrigatório' })}
+                {...register('gender', {
+                  required: 'Se quex, quex, se não quex, dix',
+                })}
                 type='radio'
                 value='NI'
               />{' '}
@@ -139,7 +147,7 @@ function EditUser() {
               placeholder='CPF'
               maskChar={null}
               {...register('cpf', {
-                required: 'CPF é obrigatório',
+                required: 'Aqueles números do CPF. Não tem? Coloca ai!',
                 pattern: {
                   value: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
                   message: 'Formato de CPF inválido',
@@ -162,7 +170,7 @@ function EditUser() {
               type='date'
               className={errors.birthDate ? 'input-error' : ''}
               {...register('birthDate', {
-                required: 'Data de nascimento é obrigatória',
+                required: 'Dix aqui a data. Ninguém vai saber a idade.',
               })}
             />
             {errors.birthDate && (
@@ -176,7 +184,7 @@ function EditUser() {
               placeholder='CEP'
               maskChar={null}
               {...register('zipCode', {
-                required: 'CEP é obrigatório',
+                required: 'Não amarra a cara, mas o CEP é obrigatório',
                 pattern: /^\d{5}-\d{3}$/,
                 onBlur: (event) => {
                   const cep = getValues('zipCode');
@@ -200,7 +208,7 @@ function EditUser() {
               type='text'
               className={errors.street ? 'input-error' : ''}
               placeholder='Rua'
-              {...register('street', { required: 'Rua é obrigatória' })}
+              {...register('street', { required: 'Esqueceu da Rua?' })}
             />
             {errors.street && (
               <small className='error-message'>{errors.street.message}</small>
@@ -210,7 +218,9 @@ function EditUser() {
               type='text'
               className={errors.number ? 'input-error' : ''}
               placeholder='Número'
-              {...register('number', { required: 'Número é obrigatório' })}
+              {...register('number', {
+                required: 'Se não tem número, coloca s/n',
+              })}
             />
             {errors.number && (
               <small className='error-message'>{errors.number.message}</small>
@@ -227,7 +237,7 @@ function EditUser() {
               className={errors.neighborhood ? 'input-error' : ''}
               placeholder='Bairro'
               {...register('neighborhood', {
-                required: 'Bairro é obrigatório',
+                required: 'Os queridus querem saber da vizinhança!',
               })}
             />
             {errors.neighborhood && (
@@ -240,7 +250,9 @@ function EditUser() {
               type='text'
               className={errors.city ? 'input-error' : ''}
               placeholder='Cidade'
-              {...register('city', { required: 'Cidade é obrigatória' })}
+              {...register('city', {
+                required: 'É em Floripa? Precisax dizer também.',
+              })}
             />
             {errors.city && (
               <small className='error-message'>{errors.city.message}</small>
@@ -250,7 +262,9 @@ function EditUser() {
               type='text'
               className={errors.state ? 'input-error' : ''}
               placeholder='Estado'
-              {...register('state', { required: 'Estado é obrigatório' })}
+              {...register('state', {
+                required: 'Faltou aquelas duas letrinhas do exhtado',
+              })}
             />
             {errors.state && (
               <small className='error-message'>{errors.state.message}</small>

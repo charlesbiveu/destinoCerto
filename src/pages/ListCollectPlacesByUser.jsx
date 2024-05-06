@@ -24,7 +24,9 @@ function ListCollectPlacesByUser() {
       .then(setUserPlaces)
       .catch((error) => {
         console.error('Erro ao buscar locais de coleta:', error);
-        alert('Falha ao buscar locais de coleta.');
+        alert(
+          'Sabe aquele boca-moli do programador? Aquele que mora lá pelo Campeche? Pois errou de novo. Falha ao buscar locais de coleta.'
+        );
       });
   }, [user_id, getCollectPlacesByUserId]);
 

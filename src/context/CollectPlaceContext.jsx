@@ -29,10 +29,10 @@ export const CollectPlaceContextProvider = ({ children }) => {
       body: JSON.stringify(place),
     })
       .then(() => {
-        alert('Local de coleta criado com seucesso!');
+        alert('Matasse a pau! Local de coleta criado com sucesso!');
         getPlaces();
       })
-      .catch(() => alert('Erro ao criar o local de coleta'));
+      .catch(() => alert('O Boca-moli do programador fez algo errado!'));
   }
 
   async function getCollectPlaceById(id) {
@@ -78,10 +78,14 @@ export const CollectPlaceContextProvider = ({ children }) => {
       method: 'DELETE',
     })
       .then(() => {
-        alert('Local de coleta deletado com sucesso!');
+        alert('Em dois toques acabou com o ponto de coleta');
         getPlaces(); // Atualiza a lista após a exclusão
       })
-      .catch(() => alert('Erro ao deletar o local de coleta'));
+      .catch(() =>
+        alert(
+          'O Mandrião do programador fez algo errado de novo! Erro ao deletar o local de coleta'
+        )
+      );
   }
   // locais de coleta por usuário
   async function getCollectPlacesByUserId(user_id) {
