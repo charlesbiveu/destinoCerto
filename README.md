@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/charles-futDevFloripa/destinoCerto/public/DestinoCertoLogoBlur.png?raw=true" alt="Logo do Destino Certo">
+  <img src=">https://github.com/charles-futDevFloripa/destinoCerto/blob/develop/public/DestinoCertoLogoBlur.png?raw=true" alt="Logo do Destino Certo">
 </p>
 
 # Destino Certo
@@ -11,7 +11,7 @@
 Este projeto visa incentivar o descarte correto do lixo, auxiliando a localizar o ponto de coleta correto na sua região.
 
 <p align="center">
-  <img src="https://github.com/charles-futDevFloripa/destinoCerto/public/prints/globalMap.jpg?raw=true" alt="destinoCerto">
+  <img src="https://github.com/charles-futDevFloripa/destinoCerto/blob/develop/public/prints/globalMap.jpg?raw=true" alt="destinoCerto">
 </p>
 
 ## Tecnologias Utilizadas
