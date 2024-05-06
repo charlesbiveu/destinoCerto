@@ -86,11 +86,16 @@ Depois no terminal execute a instalação
 npm install
 ```
 
-Inicie o servidor e o frontEnd:
+Após a instalação concluída execute o json-server
 
 ```bash
-npm run server # Inicia o json-sever
-npm run dev # Inicia o servidor frontEnd
+npm run server
+```
+
+Com o json-server em execução, inicie o Vite - React
+
+```bash
+npm run dev
 ```
 
 ## Melhorias Futuras
