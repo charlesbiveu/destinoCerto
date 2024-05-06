@@ -37,7 +37,6 @@ function Header() {
                   </li>
                 </ul>
               </li>
-
               <li className='dropdown'>
                 <div className='dropdown-toggle'>
                   <RiChatSmile2Line />
@@ -46,6 +45,19 @@ function Header() {
                   </span>
                 </div>
               </li>
+              {isAdmin && (
+                <li className='dropdown'>
+                  <div className='dropdown-toggle'>
+                    <FaGears />
+                    <span>Admin</span>
+                  </div>
+                  <ul className='dropdown-content'>
+                    <li>
+                      <Link to='/users/list'>Listar Usuários</Link>
+                    </li>
+                  </ul>
+                </li>
+              )}
               <li className='dropdown'>
                 <div className='dropdown-toggle'>
                   <FaUserGear />
@@ -73,19 +85,6 @@ function Header() {
                   </li>
                 </ul>
               </li>
-              {isAdmin && (
-                <li className='dropdown'>
-                  <div className='dropdown-toggle'>
-                    <FaGears />
-                    <span>Admin</span>
-                  </div>
-                  <ul className='dropdown-content'>
-                    <li>
-                      <Link to='/users/list'>Listar Usuários</Link>
-                    </li>
-                  </ul>
-                </li>
-              )}
             </ul>
           </nav>
         </div>

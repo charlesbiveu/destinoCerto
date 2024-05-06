@@ -63,6 +63,14 @@ function Login() {
               Mó Quiridu ainda não tem conta? <br />
               <Link to='/users/create'>Dázumbanho e te cadastra aqui!</Link>
             </div>
+            <div className='singin'>
+              <small>
+                {' '}
+                Para testar como administrador utilize:
+                <br />
+                admin@admin.com senha: 123456
+              </small>
+            </div>
           </div>
         </div>
       </div>

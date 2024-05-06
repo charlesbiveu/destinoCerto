@@ -529,6 +529,10 @@ button[type='submit']:hover {
   width: 100%;
 }
 
+.nav-links a:visited {
+  color: var(--space-cadet);
+}
+
 .nav-links li.dropdown {
   flex: 1;
   text-align: center;
