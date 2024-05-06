@@ -76,7 +76,8 @@ function ListCollectPlacesByUser() {
                   />
                   <Marker position={[place.latitude, place.longitude]}>
                     <Popup>
-                      {place.place} <br /> {place.placeDescription}
+                      <strong>{place.place}</strong> <br />
+                      <br /> {place.placeDescription}
                     </Popup>
                   </Marker>
                 </MapContainer>
@@ -84,7 +85,7 @@ function ListCollectPlacesByUser() {
 
               <div className='card-detail-description'>
                 <div className='card-detail-subtitle align-icon'>
-                  <MdTextsms /> <span>ÓI-ÓI-Ó!</span>
+                  <MdTextsms /> <span> Ó-lhó-lhó</span>
                 </div>
                 {place.place} <br /> {place.placeDescription}
               </div>

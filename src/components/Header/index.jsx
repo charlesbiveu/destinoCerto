@@ -5,6 +5,7 @@ import logo from '../../assets/destinoCerto.png';
 import { FaArrowsSpin } from 'react-icons/fa6';
 import { FaUserGear } from 'react-icons/fa6';
 import { FaGears } from 'react-icons/fa6';
+import { RiChatSmile2Line } from 'react-icons/ri';
 
 let isAdmin = JSON.parse(localStorage.getItem('admin'));
 let user_id = JSON.parse(localStorage.getItem('user_id'));
@@ -36,20 +37,15 @@ function Header() {
                   </li>
                 </ul>
               </li>
-              {isAdmin && (
-                <li className='dropdown'>
-                  <div className='dropdown-toggle'>
-                    <FaGears />
-                    <span>Admin</span>
-                  </div>
-                  <ul className='dropdown-content'>
-                    <li>
-                      <Link to='/users/list'>Listar Usuários</Link>
-                    </li>
-                  </ul>
-                </li>
-              )}
 
+              <li className='dropdown'>
+                <div className='dropdown-toggle'>
+                  <RiChatSmile2Line />
+                  <span className='primary'>
+                    <Link to='/regional-expressions'>Expressões</Link>{' '}
+                  </span>
+                </div>
+              </li>
               <li className='dropdown'>
                 <div className='dropdown-toggle'>
                   <FaUserGear />
@@ -77,6 +73,19 @@ function Header() {
                   </li>
                 </ul>
               </li>
+              {isAdmin && (
+                <li className='dropdown'>
+                  <div className='dropdown-toggle'>
+                    <FaGears />
+                    <span>Admin</span>
+                  </div>
+                  <ul className='dropdown-content'>
+                    <li>
+                      <Link to='/users/list'>Listar Usuários</Link>
+                    </li>
+                  </ul>
+                </li>
+              )}
             </ul>
           </nav>
         </div>

@@ -115,7 +115,8 @@ function Dashboard() {
                 />
                 <Marker position={[place.latitude, place.longitude]}>
                   <Popup>
-                    {place.place} <br /> {place.placeDescription}
+                    <strong>{place.place}</strong> <br />
+                    <br /> {place.placeDescription}
                   </Popup>
                 </Marker>
               </MapContainer>

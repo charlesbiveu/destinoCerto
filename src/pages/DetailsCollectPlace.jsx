@@ -68,7 +68,8 @@ function DetailsCollectPlace() {
             />
             <Marker position={position}>
               <Popup>
-                {place.place} <br /> {place.placeDescription}
+                <strong>{place.place}</strong> <br />
+                <br /> {place.placeDescription}
               </Popup>
             </Marker>
           </MapContainer>
@@ -76,7 +77,7 @@ function DetailsCollectPlace() {
         <div className='card-detail-body'>
           <div className='card-detail-description'>
             <div className='card-detail-subtitle align-icon'>
-              <MdTextsms /> <span>ÓI-ÓI-Ó!</span>
+              <MdTextsms /> <span>Ó-lhó-lhó</span>
             </div>
             {place.place} <br /> {place.placeDescription}
           </div>
