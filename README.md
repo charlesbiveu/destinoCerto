@@ -57,6 +57,10 @@ Utilizei a Context API para gerenciar os estados globais da aplicação, dividid
 Destino Certo foi desenvolvido para suportar diferentes resoluções de tela. O desenvolvimento parte
 do conceito mobile-first para depois abranger telas maiores.
 
+https://github.com/charles-futDevFloripa/destinoCerto/assets/164348201/8957decf-54b0-48ae-ae7b-3f973d97ffd5
+
+
+
 ### Área administrativa
 
 Ao realizar o login como administrador é habilitado o menu **Admin** nele é possível:
